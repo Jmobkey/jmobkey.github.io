@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inference at scale — a working estimate</title>
+<meta name="description" content="What an AI workload actually costs once it leaves the pilot. A ledger for the multipliers that don't make it into the business case.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Sometype+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EAEDE4;
+    --ink:#1C1B17;
+    --faded:#6A6D60;
+    --rule:#C2C6B6;
+    --hair:#D6DACB;
+    --red:#A83829;
+    --sans:'Archivo',Helvetica,Arial,sans-serif;
+    --mono:'Sometype Mono',ui-monospace,Menlo,monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.5;
+    padding:0 1.15rem 4rem;
+  }
+
+  .sheet{max-width:37rem;margin:0 auto;}
+
+  a{color:var(--ink);text-underline-offset:3px;}
+
+  /* ---- masthead ---- */
+
+  .masthead{
+    padding:3.25rem 0 1.1rem;
+    border-bottom:2px solid var(--ink);
+  }
+
+  .docline{
+    font-family:var(--mono);
+    font-size:.6875rem;
+    color:var(--faded);
+    margin:0 0 1.4rem;
+  }
+
+  h1{
+    font-weight:700;
+    font-size:clamp(1.7rem,5.4vw,2.15rem);
+    letter-spacing:-.028em;
+    line-height:1.08;
+    margin:0 0 .9rem;
+    max-width:16ch;
+  }
+
+  .standfirst{
+    font-size:.9375rem;
+    color:var(--faded);
+    margin:0;
+    max-width:46ch;
+  }
+
+  /* ---- summary ---- */
+
+  .summary{
+    position:sticky;
+    top:0;
+    z-index:9;
+    background:var(--paper);
+    border-bottom:2px solid var(--ink);
+    padding:.9rem 0 .8rem;
+  }
+
+  .sumrow{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:1rem;
+    padding:.18rem 0;
+  }
+
+  .sumrow .k{font-size:.8125rem;color:var(--faded);white-space:nowrap;}
+
+  .sumrow .v{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:1.05rem;
+    letter-spacing:-.02em;
+    white-space:nowrap;
+  }
+
+  .sumrow.over .v{color:var(--red);}
+
+  .verdict{
+    font-size:.8125rem;
+    color:var(--faded);
+    margin:.55rem 0 0;
+    padding-top:.5rem;
+    border-top:1px solid var(--hair);
+  }
+
+  .verdict b{font-family:var(--mono);color:var(--red);font-weight:700;}
+
+  /* ---- ledger blocks ---- */
+
+  .block{padding:2rem 0 .4rem;}
+
+  .block > h2{
+    font-size:.75rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin:0 0 .3rem;
+  }
+
+  .block > .intro{
+    font-size:.875rem;
+    color:var(--faded);
+    margin:0 0 1.1rem;
+    max-width:46ch;
+  }
+
+  .line{
+    border-bottom:1px solid var(--hair);
+    padding:.7rem 0 .55rem;
+  }
+
+  .line:first-of-type{border-top:1px solid var(--rule);}
+
+  .lhead{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:.8rem;
+  }
+
+  .lhead label{font-size:.9375rem;font-weight:500;}
+
+  .gloss{
+    font-size:.8125rem;
+    color:var(--faded);
+    margin:.25rem 0 0;
+    max-width:44ch;
+  }
+
+  input[type="number"],select{
+    font-family:var(--mono);
+    font-size:.875rem;
+    font-weight:500;
+    width:6.5rem;
+    padding:.28rem .4rem;
+    border:0;
+    border-bottom:1px solid var(--rule);
+    background:transparent;
+    color:var(--ink);
+    text-align:right;
+    border-radius:0;
+  }
+
+  select{font-family:var(--sans);width:auto;text-align:left;}
+
+  input[type="number"]:focus,select:focus{
+    outline:0;
+    border-bottom:2px solid var(--red);
+  }
+
+  input[type="range"]{
+    width:100%;
+    margin:.55rem 0 0;
+    accent-color:var(--ink);
+    height:1rem;
+  }
+
+  .duo{display:flex;gap:1.5rem;}
+  .duo .line{flex:1;}
+
+  .rates{display:flex;gap:.35rem;margin:0 0 1rem;}
+
+  .rates button{
+    flex:1;
+    font-family:var(--mono);
+    font-size:.75rem;
+    padding:.35rem .2rem;
+    border:1px solid var(--rule);
+    background:transparent;
+    color:var(--faded);
+    cursor:pointer;
+    border-radius:0;
+  }
+
+  .rates button:hover{border-color:var(--ink);color:var(--ink);}
+
+  /* ---- breakdown ---- */
+
+  table{width:100%;border-collapse:collapse;font-size:.875rem;}
+  table td{padding:.5rem 0;border-bottom:1px solid var(--hair);}
+  table tr:first-child td{border-top:1px solid var(--rule);}
+  table td:last-child{
+    text-align:right;
+    font-family:var(--mono);
+    white-space:nowrap;
+  }
+  table tr.total td{
+    border-bottom:0;
+    border-top:2px solid var(--ink);
+    font-weight:700;
+    padding-top:.6rem;
+  }
+  table tr.total td:last-child{color:var(--red);}
+
+  /* ---- prose ---- */
+
+  .prose p{font-size:.9375rem;margin:0 0 .9rem;max-width:48ch;}
+  .prose p:last-child{margin-bottom:0;}
+
+  .tools{display:flex;gap:1.2rem;margin-top:1.5rem;}
+
+  .tools button{
+    font-family:var(--sans);
+    font-size:.875rem;
+    font-weight:500;
+    padding:0 0 .15rem;
+    border:0;
+    border-bottom:1px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+    border-radius:0;
+  }
+
+  .tools button:hover{color:var(--red);border-color:var(--red);}
+
+  footer{
+    margin-top:2.75rem;
+    padding-top:1rem;
+    border-top:2px solid var(--ink);
+    font-size:.8125rem;
+    color:var(--faded);
+  }
+
+  footer p{margin:0 0 .5rem;max-width:48ch;}
+
+  :focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+
+  @media (max-width:23rem){
+    .duo{flex-direction:column;gap:0;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<div class="masthead">
+  <p class="docline">Working estimate / inference at production volume</p>
+  <h1>Three turns is not three times the cost.</h1>
+  <p class="standfirst">It's closer to six, because every turn resends what came before. Set a workload below and watch the pilot figure separate from the production one.</p>
+</div>
+
+<div class="summary" aria-live="polite">
+  <div class="sumrow">
+    <span class="k">As estimated</span>
+    <span class="v" id="naiveFig">—</span>
+  </div>
+  <div class="sumrow over">
+    <span class="k">As billed</span>
+    <span class="v" id="realFig">—</span>
+  </div>
+  <p class="verdict" id="verdict">Monthly. Adjust anything below.</p>
+</div>
+
+<div class="block">
+  <h2>Workload</h2>
+  <p class="intro">One transaction, described the way a proposal would describe it.</p>
+
+  <div class="line">
+    <div class="lhead">
+      <label for="vol">Transactions per day</label>
+      <input type="number" id="vol" min="1" value="1000">
+    </div>
+    <input type="range" id="volR" min="0" max="6" step="0.01" value="3" aria-label="Transactions per day slider">
+  </div>
+
+  <div class="duo">
+    <div class="line">
+      <div class="lhead">
+        <label for="tin">Prompt in</label>
+        <input type="number" id="tin" min="0" value="1200">
+      </div>
+    </div>
+    <div class="line">
+      <div class="lhead">
+        <label for="tout">Response out</label>
+        <input type="number" id="tout" min="0" value="500">
+      </div>
+    </div>
+  </div>
+
+  <div class="line">
+    <div class="lhead">
+      <label for="cur">Currency</label>
+      <select id="cur">
+        <option value="$">Dollars</option>
+        <option value="£">Pounds</option>
+        <option value="€">Euros</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Rates</h2>
+  <p class="intro">Per million tokens, in whichever currency you picked. Nothing is converted. These change often enough that hard-coding them would be a disservice, so the presets are tier shapes rather than any vendor's list price. Check yours.</p>
+
+  <div class="rates">
+    <button type="button" data-in="0.10" data-out="0.40">small</button>
+    <button type="button" data-in="2.00" data-out="10.00">mid</button>
+    <button type="button" data-in="5.00" data-out="25.00">frontier</button>
+  </div>
+
+  <div class="duo">
+    <div class="line">
+      <div class="lhead">
+        <label for="pin">Input</label>
+        <input type="number" id="pin" min="0" step="0.01" value="2.00">
+      </div>
+    </div>
+    <div class="line">
+      <div class="lhead">
+        <label for="pout">Output</label>
+        <input type="number" id="pout" min="0" step="0.01" value="10.00">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Multipliers</h2>
+  <p class="intro">All of it routine behaviour. None of it in the original number.</p>
+
+  <div class="line">
+    <div class="lhead">
+      <label for="ctx">Retrieved context</label>
+      <input type="number" id="ctx" min="0" value="6000">
+    </div>
+    <p class="gloss">Grounding documents ride along on every call, not once at the start. Usually the biggest line here and the one most often forgotten.</p>
+    <input type="range" id="ctxR" min="0" max="30000" step="500" value="6000" aria-label="Retrieved context slider">
+  </div>
+
+  <div class="line">
+    <div class="lhead">
+      <label for="turns">Turns per task</label>
+      <input type="number" id="turns" min="1" max="50" value="3">
+    </div>
+    <p class="gloss">One if it's a single call. More if the model reaches for tools or checks itself. This is the compounding one.</p>
+    <input type="range" id="turnsR" min="1" max="12" step="1" value="3" aria-label="Turns slider">
+  </div>
+
+  <div class="line">
+    <div class="lhead">
+      <label for="tool">Tool output per turn</label>
+      <input type="number" id="tool" min="0" value="1500">
+    </div>
+    <p class="gloss">What a search or a database hands back, which then lives in the conversation for every remaining turn.</p>
+    <input type="range" id="toolR" min="0" max="8000" step="250" value="1500" aria-label="Tool output slider">
+  </div>
+
+  <div class="line">
+    <div class="lhead">
+      <label for="retry">Retries, %</label>
+      <input type="number" id="retry" min="0" max="200" value="8">
+    </div>
+    <p class="gloss">Bad JSON, timeouts, rate limits, and users pressing the button again.</p>
+    <input type="range" id="retryR" min="0" max="50" step="1" value="8" aria-label="Retries slider">
+  </div>
+
+  <div class="line">
+    <div class="lhead">
+      <label for="evals">Evals, %</label>
+      <input type="number" id="evals" min="0" max="200" value="10">
+    </div>
+    <p class="gloss">Sampling live traffic for quality, plus a regression run every time someone edits a prompt.</p>
+    <input type="range" id="evalsR" min="0" max="50" step="1" value="10" aria-label="Evals slider">
+  </div>
+
+  <div class="line">
+    <div class="lhead">
+      <label for="nonprod">Non-production, %</label>
+      <input type="number" id="nonprod" min="0" max="200" value="15">
+    </div>
+    <p class="gloss">Staging, load tests, demos, and a team iterating. Same invoice.</p>
+    <input type="range" id="nonprodR" min="0" max="60" step="1" value="15" aria-label="Non-production slider">
+  </div>
+</div>
+
+<div class="block">
+  <h2>Where it lands</h2>
+  <table><tbody id="tbody"></tbody></table>
+  <div class="tools">
+    <button type="button" id="copy">Copy figures</button>
+    <button type="button" id="reset">Reset</button>
+  </div>
+</div>
+
+<div class="block prose">
+  <h2>What's missing</h2>
+  <p>Tokens are the easiest cost to calculate and rarely the biggest. If someone reads the output before it goes anywhere, that review time will usually exceed everything on this page, and a workflow needing review is a different proposition from one that doesn't.</p>
+  <p>Also absent: the engineering to build it, the work to stop it quietly degrading, and the vector store, orchestration and logging sitting underneath. On the other side, caching and batch pricing can pull the real figure down a long way, and none of that is modelled here. Read the right-hand number as an unoptimised ceiling.</p>
+  <p>The precision isn't the point. The distance between the two numbers is, and only the left one tends to reach the paper that gets signed.</p>
+</div>
+
+<footer>
+  <p>Runs in your browser. Nothing sent, nothing stored, no analytics.</p>
+  <p>General practice rather than professional advice, and my own view rather than any employer's. Check live pricing before you commit a budget to anything.</p>
+  <p>Josh Murphy · <a href="https://www.linkedin.com/in/josh-murphy-96575b184">LinkedIn</a></p>
+</footer>
+
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const D = {vol:1000,tin:1200,tout:500,pin:2,pout:10,ctx:6000,turns:3,tool:1500,retry:8,evals:10,nonprod:15};
+
+$('volR').addEventListener('input', () => { $('vol').value = Math.round(Math.pow(10, +$('volR').value)); calc(); });
+$('vol').addEventListener('input', () => {
+  const v = Math.max(1, +$('vol').value || 1);
+  $('volR').value = Math.min(6, Math.max(0, Math.log10(v)));
+  calc();
+});
+
+['ctx','turns','tool','retry','evals','nonprod'].forEach(k => {
+  $(k+'R').addEventListener('input', () => { $(k).value = $(k+'R').value; calc(); });
+  $(k).addEventListener('input', () => { $(k+'R').value = $(k).value; calc(); });
+});
+
+['tin','tout','pin','pout','cur'].forEach(k => $(k).addEventListener('input', calc));
+
+document.querySelectorAll('.rates button').forEach(b =>
+  b.addEventListener('click', () => {
+    $('pin').value = b.dataset.in;
+    $('pout').value = b.dataset.out;
+    calc();
+  })
+);
+
+const n = id => parseFloat($(id).value) || 0;
+
+function money(v, s){
+  if (v >= 1e6) return s + (v/1e6).toFixed(1) + 'm';
+  if (v >= 1000) return s + Math.round(v).toLocaleString();
+  if (v >= 10) return s + v.toFixed(0);
+  return s + v.toFixed(2);
+}
+
+let last = {};
+
+function calc(){
+  const s = $('cur').value;
+  const vol = Math.max(1, n('vol'));
+  const tin = n('tin'), tout = n('tout');
+  const pin = n('pin')/1e6, pout = n('pout')/1e6;
+  const ctx = n('ctx'), tool = n('tool');
+  const turns = Math.max(1, Math.round(n('turns')));
+  const over = (1 + n('retry')/100) * (1 + n('evals')/100) * (1 + n('nonprod')/100);
+  const days = 30.4;
+
+  const naive = (tin*pin + tout*pout) * vol * days;
+
+  const baseIn = tin + ctx;
+  let inTok = 0;
+  for (let i = 0; i < turns; i++) inTok += baseIn + i*(tout + tool);
+  const outTok = tout * turns;
+
+  const real = (inTok*pin + outTok*pout) * vol * days * over;
+
+  $('naiveFig').textContent = money(naive, s);
+  $('realFig').textContent = money(real, s);
+
+  const mult = naive > 0 ? real/naive : 0;
+  $('verdict').innerHTML = 'Monthly. A factor of <b>' + mult.toFixed(1) + '</b>, or ' +
+    money(real*12, s) + ' across a year, at ' + money(real/(vol*days), s) + ' a transaction.';
+
+  const scale = vol * days * over;
+  const rows = [
+    ['Prompt', (tin*turns)*pin*scale],
+    ['Retrieved context', (ctx*turns)*pin*scale],
+    ['Carried conversation', (inTok - baseIn*turns)*pin*scale],
+    ['Generated output', outTok*pout*scale]
+  ];
+
+  $('tbody').innerHTML =
+    rows.map(([k,v]) => '<tr><td>'+k+'</td><td>'+money(v,s)+'</td></tr>').join('') +
+    '<tr class="total"><td>Monthly</td><td>'+money(real,s)+'</td></tr>';
+
+  last = {s, vol, turns, mult, naive, real};
+}
+
+$('reset').addEventListener('click', () => {
+  Object.entries(D).forEach(([k,v]) => {
+    $(k).value = v;
+    if ($(k+'R')) $(k+'R').value = (k === 'vol') ? Math.log10(v) : v;
+  });
+  calc();
+});
+
+$('copy').addEventListener('click', async e => {
+  const t = 'Inference estimate\n\n' + last.vol.toLocaleString() + ' transactions/day, ' +
+    last.turns + ' turn(s) each\n\nAs estimated: ' + money(last.naive, last.s) + '/mo\n' +
+    'As billed: ' + money(last.real, last.s) + '/mo\nFactor: ' + last.mult.toFixed(1) + '\n' +
+    'Annual: ' + money(last.real*12, last.s) +
+    '\n\nExcludes human review, build and maintenance, supporting infrastructure. No caching or batch discounts applied.';
+  try { await navigator.clipboard.writeText(t); e.target.textContent = 'Copied'; }
+  catch { e.target.textContent = 'Blocked'; }
+  setTimeout(() => { e.target.textContent = 'Copy figures'; }, 1800);
+});
+
+calc();
+</script>
+</body>
+</html>
