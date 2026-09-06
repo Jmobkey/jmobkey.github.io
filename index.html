@@ -280,8 +280,8 @@
 
 <div class="masthead">
   <p class="docline">Working estimate / inference at production volume</p>
-  <h1>Three turns is not three times the cost.</h1>
-  <p class="standfirst">It's closer to six, because every turn resends what came before. Set a workload below and watch the pilot figure separate from the production one.</p>
+  <h1>Turns don't add up. They compound.</h1>
+  <p class="standfirst">Three turns costs nearly four times a single call, because every turn resends what came before. Set a workload below and watch the pilot figure separate from the production one.</p>
 </div>
 
 <div class="layout">
@@ -446,6 +446,7 @@
       <h2>What's missing</h2>
       <p>Tokens are the easiest cost to calculate and rarely the biggest. If someone reads the output before it goes anywhere, that review time will usually exceed everything on this page, and a workflow needing review is a different proposition from one that doesn't.</p>
       <p>Also absent: the engineering to build it, the work to stop it quietly degrading, and the vector store, orchestration and logging sitting underneath. On the other side, caching and batch pricing can pull the real figure down a long way, and none of that is modelled here. Read the second number as an unoptimised ceiling.</p>
+      <p>Two choices worth knowing about. The three percentages compound rather than add, on the reasoning that eval traffic gets retried too. And a retry is modelled as re-running the whole task, where in practice you often only repeat the turn that failed. Both push the estimate high, which suits a ceiling but is worth adjusting down if your retries are cheaper than that.</p>
       <p>The precision isn't the point. The distance between the two numbers is, and only the first one tends to reach the paper that gets signed.</p>
     </div>
 
