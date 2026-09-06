@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Josh Murphy — AI strategy and delivery</title>
+<title>Josh Murphy — AI strategist and enthusiast</title>
 <meta name="description" content="Tools and working notes on getting AI from proposal to production.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,12 +33,12 @@
     padding:0 1.15rem 5rem;
   }
 
-  .sheet{max-width:44rem;margin:0 auto;}
+  .sheet{max-width:64rem;margin:0 auto;}
 
   a{color:var(--ink);text-underline-offset:3px;}
   :focus-visible{outline:2px solid var(--red);outline-offset:2px;}
 
-  .masthead{padding:4rem 0 1.2rem;border-bottom:2px solid var(--ink);}
+  .masthead{padding:4rem 0 1.3rem;border-bottom:2px solid var(--ink);}
 
   .docline{
     font-family:var(--mono);
@@ -49,15 +49,17 @@
 
   h1{
     font-weight:700;
-    font-size:clamp(1.65rem,4.4vw,2.4rem);
+    font-size:clamp(1.65rem,4.4vw,2.7rem);
     letter-spacing:-.028em;
     line-height:1.1;
     margin:0 0 1rem;
-    max-width:22ch;
+    max-width:24ch;
   }
 
-  .standfirst{font-size:.9375rem;color:var(--faded);margin:0 0 .7rem;max-width:52ch;}
+  .standfirst{font-size:.9375rem;color:var(--faded);margin:0 0 .7rem;max-width:54ch;}
   .standfirst:last-child{margin-bottom:0;}
+
+  .layout{display:block;}
 
   .block{padding:2.4rem 0 .4rem;}
 
@@ -88,12 +90,7 @@
     margin-bottom:.4rem;
   }
 
-  .item h3{
-    font-size:1.15rem;
-    font-weight:600;
-    letter-spacing:-.015em;
-    margin:0;
-  }
+  .item h3{font-size:1.2rem;font-weight:600;letter-spacing:-.015em;margin:0;}
 
   .item .meta{
     font-family:var(--mono);
@@ -102,10 +99,9 @@
     white-space:nowrap;
   }
 
-  .item p{font-size:.9375rem;color:var(--faded);margin:0;max-width:54ch;}
+  .item p{font-size:.9375rem;color:var(--faded);margin:0;max-width:56ch;}
 
-  .item:hover h3{color:var(--red);}
-  .item:hover .meta{color:var(--red);}
+  .item:hover h3,.item:hover .meta{color:var(--red);}
 
   .pending{
     border-top:1px solid var(--hair);
@@ -126,7 +122,31 @@
     color:var(--faded);
   }
 
-  footer p{margin:0 0 .5rem;max-width:50ch;}
+  footer p{margin:0 0 .5rem;max-width:52ch;}
+
+  @media (min-width:58rem){
+    body{padding-left:2rem;padding-right:2rem;}
+    .masthead{padding-top:5rem;}
+    .standfirst{font-size:1rem;}
+
+    .layout{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 19rem;
+      gap:4rem;
+      align-items:start;
+    }
+
+    .side{
+      padding-top:2.4rem;
+      border-left:2px solid var(--ink);
+      padding-left:1.75rem;
+    }
+
+    .side .block{padding-top:0;}
+    .side .prose p{font-size:.875rem;}
+
+    .item h3{font-size:1.3rem;}
+  }
 </style>
 </head>
 <body>
@@ -136,31 +156,39 @@
   <p class="docline">Josh Murphy / AI strategy and delivery</p>
   <h1>Notes and tools from the gap between an AI strategy and an AI deployment.</h1>
   <p class="standfirst">Getting AI into production inside a large organisation turns out to be a problem of data access, process reality and ownership far more than a problem of models.</p>
-  <p class="standfirst">This is where I put the practical things. Everything here is free, runs entirely in your browser, and collects nothing.</p>
+  <p class="standfirst">This is my workshop. Everything here is free, runs entirely in your browser, and collects nothing.</p>
 </div>
 
-<div class="block">
-  <h2>Tools</h2>
+<div class="layout">
 
-  <a class="item" href="cost/">
-    <div class="itop">
-      <h3>Inference at scale</h3>
-      <span class="meta">calculator</span>
+  <div class="main">
+    <div class="block">
+      <h2>Tools</h2>
+
+      <a class="item" href="cost/">
+        <div class="itop">
+          <h3>Inference at scale</h3>
+          <span class="meta">calculator</span>
+        </div>
+        <p>What a workload costs once it leaves the pilot. Models the multipliers that don't reach the business case: retrieved context on every call, conversation carried across turns, retries, evals, and non-production traffic.</p>
+      </a>
+
+      <p class="pending">More as I build it.</p>
     </div>
-    <p>What a workload costs once it leaves the pilot. Models the multipliers that don't reach the business case: retrieved context on every call, conversation carried across turns, retries, evals, and non-production traffic.</p>
-  </a>
+  </div>
 
-  <p class="pending">More as I build it.</p>
-</div>
+  <div class="side">
+    <div class="block prose">
+      <h2>Why</h2>
+      <p>Most writing about enterprise AI is either vendor marketing or strategy at an altitude where nothing can go wrong. There isn't much covering the unglamorous middle, where the questions are about who owns the data, what the process actually looks like, and who maintains the thing in a year.</p>
+      <p>These are my attempt at that middle. Opinionated on purpose, and each one says plainly what it doesn't account for.</p>
+    </div>
+  </div>
 
-<div class="block prose">
-  <h2>Why</h2>
-  <p>Most writing about enterprise AI is either vendor marketing or strategy at an altitude where nothing can go wrong. There isn't much covering the unglamorous middle, where the questions are about who owns the data, what the process actually looks like, and who maintains the thing in a year.</p>
-  <p>These are my attempt at that middle. They're opinionated on purpose, and each one says plainly what it doesn't account for.</p>
 </div>
 
 <footer>
-  <p>My own views rather than any employer's, offered as thinking aids rather than professional advice.</p>
+  <p>A workshop rather than a shop. Everything here is an experiment, built to think with and revised whenever someone shows me a better answer. If something looks wrong it might well be, and I'd like to hear about it.</p>
   <p><a href="https://www.linkedin.com/in/josh-murphy-96575b184">LinkedIn</a></p>
 </footer>
 
