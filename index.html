@@ -3,195 +3,334 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Josh Murphy — AI strategist and enthusiast</title>
-<meta name="description" content="Tools and working notes on getting AI from proposal to production.">
+<title>Josh Murphy — AI strategy and delivery</title>
+<meta name="description" content="AI strategy and delivery lead. Shipped AI tooling for HVAC-R distribution across North America. Tools and working notes on getting AI from proposal to production.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Sometype+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper:#EAEDE4;
-    --ink:#1C1B17;
-    --faded:#6A6D60;
-    --rule:#C2C6B6;
-    --hair:#D6DACB;
-    --red:#A83829;
-    --sans:'Archivo',Helvetica,Arial,sans-serif;
-    --mono:'Sometype Mono',ui-monospace,Menlo,monospace;
-  }
+:root{
+  --zinc:#D5DAD3;
+  --paper:#EDEFE9;
+  --ink:#131E1C;
+  --ink-soft:#4C5A55;
+  --gas:#EFBE1C;
+  --oxide:#9A4526;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;color:var(--ink);
+  font-family:'Archivo',system-ui,sans-serif;
+  font-size:17px;line-height:1.6;
+  background-color:var(--zinc);
+  background-image:
+    linear-gradient(rgba(19,30,28,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(19,30,28,.028) 1px,transparent 1px);
+  background-size:26px 26px;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 30px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gas);outline-offset:3px}
 
-  *{box-sizing:border-box;}
-  html{-webkit-text-size-adjust:100%;}
+/* ---------------- header ---------------- */
+header{border-bottom:1px solid rgba(19,30,28,.28)}
+.bar{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:17px 0}
+.mark{font-weight:900;letter-spacing:-.035em;font-size:1.02rem}
+.mark em{font-style:normal;font-weight:400;color:var(--ink-soft);letter-spacing:0}
+nav{display:flex;gap:20px;font-size:.93rem}
+nav a{text-decoration:none;padding-bottom:3px;border-bottom:2px solid transparent}
+nav a:hover,nav a:focus-visible{border-bottom-color:var(--gas)}
 
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:var(--sans);
-    font-size:16px;
-    line-height:1.5;
-    padding:0 1.15rem 5rem;
-  }
+/* ---------------- hero ---------------- */
+.hero{display:grid;grid-template-columns:1fr 372px;gap:60px;align-items:start;padding:70px 0 76px}
+h1{
+  font-size:clamp(2.5rem,6.2vw,4.4rem);
+  line-height:.98;letter-spacing:-.045em;font-weight:900;
+  margin:0 0 26px;max-width:13ch;text-wrap:balance;
+}
+.lede{font-size:1.15rem;max-width:45ch;margin:0 0 16px;color:var(--ink-soft)}
+.lede.first{color:var(--ink);font-size:1.24rem;line-height:1.5}
 
-  .sheet{max-width:64rem;margin:0 auto;}
+/* ---------------- rating plate ---------------- */
+.plate{
+  position:relative;padding:15px 15px 13px;border-radius:2px;color:#20302C;
+  background-color:#C4CBC2;
+  background-image:
+    repeating-linear-gradient(94deg,rgba(255,255,255,.34) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(94deg,rgba(19,30,28,.05) 0 1px,transparent 1px 5px),
+    linear-gradient(158deg,#D2D8CF 0%,#BAC2B8 46%,#C9D0C6 78%,#B3BBB1 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.6),
+    inset 0 -1px 0 rgba(19,30,28,.22),
+    0 10px 20px -10px rgba(19,30,28,.5),
+    0 2px 3px rgba(19,30,28,.22);
+  font-family:'IBM Plex Mono',monospace;
+}
+.screw{
+  position:absolute;width:11px;height:11px;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%,#E6EAE4,#9AA298 58%,#6A736A);
+  box-shadow:inset 0 0 0 .5px rgba(19,30,28,.5), 0 1px 1px rgba(255,255,255,.5);
+}
+.screw::after{
+  content:"";position:absolute;left:2px;right:2px;top:5px;height:1px;
+  background:rgba(19,30,28,.55);transform:rotate(34deg);
+}
+.screw.tl{top:9px;left:9px}.screw.tr{top:9px;right:9px}
+.screw.bl{bottom:9px;left:9px}.screw.br{bottom:9px;right:9px}
 
-  a{color:var(--ink);text-underline-offset:3px;}
-  :focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+.plate-inner{border:1.5px solid rgba(19,30,28,.42);padding:13px 14px 12px}
+.plate-top{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+  padding-bottom:9px;margin-bottom:11px;border-bottom:1.5px solid rgba(19,30,28,.42);
+}
+.plate-title{font-size:.66rem;font-weight:600;letter-spacing:.1em;line-height:1.5}
+.plate-title span{display:block;font-weight:400;opacity:.62}
+.plate-badge{
+  border:1.5px solid rgba(19,30,28,.5);border-radius:50%;
+  width:42px;height:42px;flex:none;display:grid;place-content:center;text-align:center;
+  font-size:.5rem;font-weight:600;letter-spacing:.04em;line-height:1.25;
+}
 
-  .masthead{padding:4rem 0 1.3rem;border-bottom:2px solid var(--ink);}
+table{width:100%;border-collapse:collapse;font-size:.72rem}
+td{border:1px solid rgba(19,30,28,.28);padding:5px 7px;vertical-align:top}
+td.k{width:33%;opacity:.66;letter-spacing:.03em;white-space:nowrap}
+td.v{font-weight:600;font-size:.76rem;letter-spacing:-.01em;text-shadow:0 1px 0 rgba(255,255,255,.4)}
+td.v small{display:block;font-weight:400;font-size:.66rem;opacity:.6;letter-spacing:0}
 
-  .docline{
-    font-family:var(--mono);
-    font-size:.6875rem;
-    color:var(--faded);
-    margin:0 0 1.5rem;
-  }
+.plate-warn{
+  margin-top:11px;padding:6px 8px;background:var(--gas);
+  border:1px solid rgba(19,30,28,.42);
+  font-size:.6rem;font-weight:600;letter-spacing:.045em;line-height:1.5;
+}
+.plate-ser{
+  display:flex;justify-content:space-between;gap:10px;
+  margin-top:9px;font-size:.58rem;opacity:.58;letter-spacing:.05em;
+}
 
-  h1{
-    font-weight:700;
-    font-size:clamp(1.65rem,4.4vw,2.7rem);
-    letter-spacing:-.028em;
-    line-height:1.1;
-    margin:0 0 1rem;
-    max-width:24ch;
-  }
+/* ---------------- bands ---------------- */
+.band-paper{background:var(--paper);border-top:1px solid rgba(19,30,28,.28);border-bottom:1px solid rgba(19,30,28,.28)}
+.band-paper .wrap{padding-top:56px;padding-bottom:58px}
+.band-zinc .wrap{padding-top:56px;padding-bottom:58px}
+h2{font-size:1.5rem;letter-spacing:-.03em;font-weight:800;margin:0 0 6px}
+.h2note{margin:0 0 30px;color:var(--ink-soft);font-size:.95rem;max-width:58ch}
 
-  .standfirst{font-size:.9375rem;color:var(--faded);margin:0 0 .7rem;max-width:54ch;}
-  .standfirst:last-child{margin-bottom:0;}
+/* ---------------- work entries ---------------- */
+.job{
+  display:grid;grid-template-columns:132px 1fr;gap:30px;
+  padding:26px 0;border-top:1px solid rgba(19,30,28,.24);
+}
+.job:last-of-type{border-bottom:1px solid rgba(19,30,28,.24)}
+.job-meta{font-family:'IBM Plex Mono',monospace;font-size:.72rem;line-height:1.7;color:var(--ink-soft);padding-top:5px}
+.job-meta b{display:block;color:var(--ink);font-weight:600;font-size:.78rem}
+.job h3{margin:0 0 9px;font-size:1.3rem;letter-spacing:-.03em;font-weight:800;line-height:1.15}
+.job p{margin:0 0 12px;font-size:.99rem;max-width:64ch}
+.job p:last-child{margin-bottom:0}
+.job .role{color:var(--ink-soft);font-size:.93rem}
+.job .role b{color:var(--ink);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.tags span{
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;
+  border:1px solid rgba(19,30,28,.3);padding:3px 8px;color:var(--ink-soft);
+}
 
-  .layout{display:block;}
+/* ---------------- tool ---------------- */
+.tool{display:block;text-decoration:none;background:var(--paper);border:1px solid rgba(19,30,28,.28)}
+.tool-body{padding:26px 28px 22px}
+.tool h3{margin:0 0 10px;font-size:1.4rem;letter-spacing:-.03em;font-weight:800}
+.tool p{margin:0;color:var(--ink-soft);max-width:62ch;font-size:.98rem}
+.gap{padding:0 28px 26px}
+.gap-row{display:flex;align-items:center;gap:14px;margin-bottom:9px}
+.gap-bar{height:16px;border:1px solid rgba(19,30,28,.4)}
+.gap-bar.est{width:11.8%;background:repeating-linear-gradient(45deg,rgba(19,30,28,.3) 0 2px,transparent 2px 5px)}
+.gap-bar.bill{width:100%;background:var(--gas)}
+.gap-lab{font-family:'IBM Plex Mono',monospace;font-size:.82rem;white-space:nowrap;font-weight:500}
+.gap-lab b{font-weight:600}
+.gap-note{margin:14px 0 0;font-size:.9rem;color:var(--ink-soft)}
+.tool:hover .gap-bar.bill,.tool:focus-visible .gap-bar.bill{background:var(--oxide)}
+.soon{margin:22px 0 0;color:var(--ink-soft);font-size:.93rem}
 
-  .block{padding:2.4rem 0 .4rem;}
+/* ---------------- dark band ---------------- */
+.band-ink{background:var(--ink);color:var(--paper)}
+.band-ink .wrap{padding-top:70px;padding-bottom:70px;max-width:820px}
+.band-ink h2{color:var(--paper);font-size:clamp(1.7rem,3.6vw,2.4rem);line-height:1.1;max-width:20ch;margin-bottom:26px}
+.band-ink p{max-width:60ch;margin:0 0 19px;color:#C3CCC7;font-size:1.04rem}
+.band-ink p.punch{color:var(--paper);font-weight:500}
+.band-ink a{color:var(--gas)}
 
-  .block > h2{
-    font-size:.75rem;
-    font-weight:700;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    margin:0 0 1.1rem;
-  }
+.closing{padding:54px 0}
+.closing .wrap{max-width:640px}
+.closing p{margin:0 0 17px;color:var(--ink-soft);font-size:.99rem}
+.closing p:last-child{margin:0}
 
-  .item{
-    display:block;
-    text-decoration:none;
-    color:var(--ink);
-    border-top:1px solid var(--rule);
-    border-bottom:1px solid var(--hair);
-    padding:1.3rem 0;
-  }
+footer{border-top:1px solid rgba(19,30,28,.28);padding:24px 0 52px;font-size:.9rem;color:var(--ink-soft)}
+.foot-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:baseline}
+footer a{color:var(--ink);font-weight:500}
 
-  .item + .item{border-top:0;}
-
-  .itop{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    gap:1rem;
-    margin-bottom:.4rem;
-  }
-
-  .item h3{font-size:1.2rem;font-weight:600;letter-spacing:-.015em;margin:0;}
-
-  .item .meta{
-    font-family:var(--mono);
-    font-size:.6875rem;
-    color:var(--faded);
-    white-space:nowrap;
-  }
-
-  .item p{font-size:.9375rem;color:var(--faded);margin:0;max-width:56ch;}
-
-  .item:hover h3,.item:hover .meta{color:var(--red);}
-
-  .pending{
-    border-top:1px solid var(--hair);
-    padding:1.1rem 0 0;
-    font-size:.875rem;
-    color:var(--faded);
-    max-width:50ch;
-  }
-
-  .prose p{font-size:.9375rem;margin:0 0 .9rem;max-width:52ch;}
-  .prose p:last-child{margin-bottom:0;}
-
-  footer{
-    margin-top:3rem;
-    padding-top:1rem;
-    border-top:2px solid var(--ink);
-    font-size:.8125rem;
-    color:var(--faded);
-  }
-
-  footer p{margin:0 0 .5rem;max-width:52ch;}
-
-  @media (min-width:58rem){
-    body{padding-left:2rem;padding-right:2rem;}
-    .masthead{padding-top:5rem;}
-    .standfirst{font-size:1rem;}
-
-    .layout{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 19rem;
-      gap:4rem;
-      align-items:start;
-    }
-
-    .side{
-      padding-top:2.4rem;
-      border-left:2px solid var(--ink);
-      padding-left:1.75rem;
-    }
-
-    .side .block{padding-top:0;}
-    .side .prose p{font-size:.875rem;}
-
-    .item h3{font-size:1.3rem;}
-  }
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:44px;padding:50px 0 54px}
+  h1{max-width:none}
+  .job{grid-template-columns:1fr;gap:12px}
+  .job-meta{padding-top:0}
+  .job-meta b{display:inline;margin-right:10px}
+}
+@media (max-width:520px){
+  .gap-row{flex-wrap:wrap;gap:7px}
+  .gap-bar{width:100%!important}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
-<div class="sheet">
 
-<div class="masthead">
-  <p class="docline">Josh Murphy / AI strategy and delivery</p>
-  <h1>Notes and tools from the gap between an AI strategy and an AI deployment.</h1>
-  <p class="standfirst">Getting AI into production inside a large organisation turns out to be a problem of data access, process reality and ownership far more than a problem of models.</p>
-  <p class="standfirst">This is my workshop. Everything here is free, runs entirely in your browser, and collects nothing.</p>
-</div>
+<header>
+  <div class="wrap bar">
+    <div class="mark">Josh Murphy <em>/ AI strategy and delivery</em></div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="/cost/">Calculator</a>
+      <a href="/about/">About</a>
+      <a href="https://www.linkedin.com/in/josh-murphy-96575b184">LinkedIn</a>
+    </nav>
+  </div>
+</header>
 
-<div class="layout">
+<main>
 
-  <div class="main">
-    <div class="block">
-      <h2>Tools</h2>
+  <div class="wrap hero">
+    <div>
+      <h1>Most AI projects don't fail on the model.</h1>
+      <p class="lede first">They fail on data access, process reality, and who owns the thing in a year.</p>
+      <p class="lede">I lead AI strategy and delivery across North America for an HVAC-R distributor, where I've shipped customer-facing AI tooling and an internal platform used nationally. Before that I was a gasfitter.</p>
+    </div>
 
-      <a class="item" href="cost/">
-        <div class="itop">
-          <h3>Inference at scale</h3>
-          <span class="meta">calculator</span>
+    <div class="plate">
+      <div class="screw tl"></div><div class="screw tr"></div>
+      <div class="screw bl"></div><div class="screw br"></div>
+      <div class="plate-inner">
+
+        <div class="plate-top">
+          <div class="plate-title">
+            RATING PLATE
+            <span>PLAQUE SIGNALÉTIQUE</span>
+          </div>
+          <div class="plate-badge">RED<br>SEAL<br>B</div>
         </div>
-        <p>What a workload costs once it leaves the pilot. Models the multipliers that don't reach the business case: retrieved context on every call, conversation carried across turns, retries, evals, and non-production traffic.</p>
+
+        <table>
+          <tr><td class="k">NAME</td><td class="v">MURPHY, JOSH</td></tr>
+          <tr><td class="k">ROLE</td><td class="v">Lead, AI Strategy &amp; Delivery</td></tr>
+          <tr><td class="k">TERRITORY</td><td class="v">Canada &amp; United States</td></tr>
+          <tr><td class="k">SECTOR</td><td class="v">HVAC-R distribution<small>80+ branches</small></td></tr>
+          <tr><td class="k">DEGREE</td><td class="v">BSc Computer Science<small>Conferring Dec 2026</small></td></tr>
+          <tr><td class="k">CERT.</td><td class="v">Journeyman Gasfitter, Class B<small>NAIT · Red Seal endorsed</small></td></tr>
+          <tr><td class="k">PRIOR SVC.</td><td class="v">HVAC-R technician<small>Field · six years</small></td></tr>
+          <tr><td class="k">LOCATION</td><td class="v">Edmonton, Alberta</td></tr>
+        </table>
+
+        <div class="plate-warn">
+          CAUTION — WILL NOT DEPLOY A MODEL THAT IS NEARLY RIGHT
+        </div>
+
+        <div class="plate-ser">
+          <span>IN SERVICE SINCE 2019</span>
+          <span>NO. JM-780-YEG</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="band-paper" id="work">
+    <div class="wrap">
+      <h2>Work</h2>
+      <p class="h2note">Shipped systems rather than prototypes. Detail below is kept to what the design reasoning requires; the specifics are a conversation.</p>
+
+      <div class="job">
+        <div class="job-meta"><b>2026 —</b>Product<br>Phase I shipped</div>
+        <div>
+          <h3>Smart Tools</h3>
+          <p>A suite of AI and logic-driven utilities that let contractors identify and source the right part without phoning a branch. Phase I shipped four: an electric motor cross-referencer that reads a data plate photo and returns compatible replacements, a V-belt sizing calculator, a contactor finder, and a refrigeration oil cross-referencer.</p>
+          <p>The design problem throughout is that a near-match is worse than no answer, because someone will fit it. Substitution logic stays deterministic and rule-bound; the model handles extraction and disambiguation, never the compatibility call.</p>
+          <p class="role"><b>My part:</b> architected and implemented the functional logic, calculation engines and AI integrations. Ran structured beta testing with staff and volunteer contractors before launch, then worked with the web team to port it into production.</p>
+          <div class="tags"><span>vision / OCR</span><span>entity resolution</span><span>deterministic fallback</span><span>public-facing</span></div>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-meta"><b>2025 —</b>Platform<br>National, in service</div>
+        <div>
+          <h3>Enterprise AI platform</h3>
+          <p>An internal platform covering sales enablement and operational intelligence for a national salesforce, with capabilities for quoting support, technical validation and knowledge access.</p>
+          <p class="role"><b>My part:</b> I own its strategic direction and expansion. I run the development cycles, set the architecture and the governance it needs to survive being used by more than one department, and drive the optimisation and feedback loops that keep it improving.</p>
+          <div class="tags"><span>retrieval</span><span>governance</span><span>multi-department rollout</span><span>roadmap ownership</span></div>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-meta"><b>2024 —</b>Programme<br>Grassroots to mandate</div>
+        <div>
+          <h3>Getting AI adopted from the bottom up</h3>
+          <p>The first AI workflows at the company were unofficial. A colleague and I built them on our own time with no mandate and no budget, on the theory that the fastest route to a decision was a working thing rather than a deck.</p>
+          <p>That ran as an on-call sideline for the better part of a year before it earned a four-month pilot, during which I split each week between branch duties and building. The pilot became a full-time role, then a national remit, then this one.</p>
+          <p class="role"><b>Why it's here:</b> most AI strategy work is executing a mandate somebody else secured. This is the record of manufacturing one from a branch counter.</p>
+          <div class="tags"><span>change management</span><span>pilot design</span><span>executive buy-in</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band-zinc">
+    <div class="wrap">
+      <h2>Tools</h2>
+      <p class="h2note">Free, open, and built to think with. Each one says plainly what it doesn't account for.</p>
+
+      <a class="tool" href="/cost/">
+        <div class="tool-body">
+          <h3>Inference at scale calculator</h3>
+          <p>What a workload costs once it leaves the pilot. Models the multipliers that don't reach the business case: retrieved context on every call, conversation carried across turns, retries, evals, and non-production traffic.</p>
+        </div>
+        <div class="gap">
+          <div class="gap-row">
+            <div class="gap-bar est"></div>
+            <div class="gap-lab">$1,368 <b>as estimated</b></div>
+          </div>
+          <div class="gap-row">
+            <div class="gap-bar bill"></div>
+          </div>
+          <div class="gap-lab">$11,635 <b>as billed</b></div>
+          <p class="gap-note">Same workload, same month. Only the first number tends to reach the paper that gets signed.</p>
+        </div>
       </a>
 
-      <p class="pending">More as I build it.</p>
+      <p class="soon">A gas code evaluation set and a field-conditions reference architecture are in progress.</p>
     </div>
   </div>
 
-  <div class="side">
-    <div class="block prose">
-      <h2>Why</h2>
+  <div class="band-ink">
+    <div class="wrap">
+      <h2>I learned this trade in mechanical rooms.</h2>
+      <p>Six years as an HVAC-R service technician, a Red Seal gasfitter ticket out of NAIT, then a stretch behind the counter quoting jobs for contractors. I'm finishing a BSc in Computer Science alongside the work, conferring at the end of 2026.</p>
+      <p class="punch">What the field gives you is a low tolerance for answers that are nearly right. Knowing which parts of a system can be probabilistic and which have to stay deterministic is most of the design work, and knowing where that line sits comes from having been the person holding the wrong part.</p>
+      <p><a href="/about/">The longer version</a></p>
+    </div>
+  </div>
+
+  <div class="closing">
+    <div class="wrap">
       <p>Most writing about enterprise AI is either vendor marketing or strategy at an altitude where nothing can go wrong. There isn't much covering the unglamorous middle, where the questions are about who owns the data, what the process actually looks like, and who maintains the thing in a year.</p>
-      <p>These are my attempt at that middle. Opinionated on purpose, and each one says plainly what it doesn't account for.</p>
+      <p>This site is my attempt at that middle. A workshop rather than a shop: everything here is an experiment, built to think with and revised whenever someone shows me a better answer. If something looks wrong it might well be, and I'd like to hear about it.</p>
     </div>
   </div>
 
-</div>
+</main>
 
 <footer>
-  <p>A workshop rather than a shop. Everything here is an experiment, built to think with and revised whenever someone shows me a better answer. If something looks wrong it might well be, and I'd like to hear about it.</p>
-  <p><a href="https://www.linkedin.com/in/josh-murphy-96575b184">LinkedIn</a></p>
+  <div class="wrap foot-row">
+    <div>Corrections and arguments welcome. <a href="mailto:josh_p_murphy@hotmail.ca">Email me</a>.</div>
+    <div><a href="https://www.linkedin.com/in/josh-murphy-96575b184">LinkedIn</a> &nbsp;·&nbsp; <a href="https://github.com/jmobkey">GitHub</a></div>
+  </div>
 </footer>
 
-</div>
 </body>
 </html>
