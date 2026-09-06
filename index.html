@@ -33,16 +33,14 @@
     padding:0 1.15rem 4rem;
   }
 
-  .sheet{max-width:37rem;margin:0 auto;}
+  .sheet{max-width:66rem;margin:0 auto;}
 
   a{color:var(--ink);text-underline-offset:3px;}
+  :focus-visible{outline:2px solid var(--red);outline-offset:2px;}
 
-  /* ---- masthead ---- */
+  /* ---------- masthead ---------- */
 
-  .masthead{
-    padding:3.25rem 0 1.1rem;
-    border-bottom:2px solid var(--ink);
-  }
+  .masthead{padding:3.25rem 0 1.1rem;border-bottom:2px solid var(--ink);}
 
   .docline{
     font-family:var(--mono);
@@ -53,23 +51,20 @@
 
   h1{
     font-weight:700;
-    font-size:clamp(1.7rem,5.4vw,2.15rem);
+    font-size:clamp(1.7rem,4.6vw,2.6rem);
     letter-spacing:-.028em;
     line-height:1.08;
     margin:0 0 .9rem;
     max-width:16ch;
   }
 
-  .standfirst{
-    font-size:.9375rem;
-    color:var(--faded);
-    margin:0;
-    max-width:46ch;
-  }
+  .standfirst{font-size:.9375rem;color:var(--faded);margin:0;max-width:48ch;}
 
-  /* ---- summary ---- */
+  /* ---------- layout ---------- */
 
-  .summary{
+  .layout{display:block;}
+
+  .aside{
     position:sticky;
     top:0;
     z-index:9;
@@ -77,6 +72,8 @@
     border-bottom:2px solid var(--ink);
     padding:.9rem 0 .8rem;
   }
+
+  /* ---------- summary ---------- */
 
   .sumrow{
     display:flex;
@@ -108,7 +105,9 @@
 
   .verdict b{font-family:var(--mono);color:var(--red);font-weight:700;}
 
-  /* ---- ledger blocks ---- */
+  .sidebreak{display:none;}
+
+  /* ---------- blocks ---------- */
 
   .block{padding:2rem 0 .4rem;}
 
@@ -120,35 +119,15 @@
     margin:0 0 .3rem;
   }
 
-  .block > .intro{
-    font-size:.875rem;
-    color:var(--faded);
-    margin:0 0 1.1rem;
-    max-width:46ch;
-  }
+  .block > .intro{font-size:.875rem;color:var(--faded);margin:0 0 1.1rem;max-width:46ch;}
 
-  .line{
-    border-bottom:1px solid var(--hair);
-    padding:.7rem 0 .55rem;
-  }
-
+  .line{border-bottom:1px solid var(--hair);padding:.7rem 0 .55rem;}
   .line:first-of-type{border-top:1px solid var(--rule);}
 
-  .lhead{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:.8rem;
-  }
-
+  .lhead{display:flex;justify-content:space-between;align-items:center;gap:.8rem;}
   .lhead label{font-size:.9375rem;font-weight:500;}
 
-  .gloss{
-    font-size:.8125rem;
-    color:var(--faded);
-    margin:.25rem 0 0;
-    max-width:44ch;
-  }
+  .gloss{font-size:.8125rem;color:var(--faded);margin:.25rem 0 0;max-width:44ch;}
 
   input[type="number"],select{
     font-family:var(--mono);
@@ -166,17 +145,9 @@
 
   select{font-family:var(--sans);width:auto;text-align:left;}
 
-  input[type="number"]:focus,select:focus{
-    outline:0;
-    border-bottom:2px solid var(--red);
-  }
+  input[type="number"]:focus,select:focus{outline:0;border-bottom:2px solid var(--red);}
 
-  input[type="range"]{
-    width:100%;
-    margin:.55rem 0 0;
-    accent-color:var(--ink);
-    height:1rem;
-  }
+  input[type="range"]{width:100%;margin:.55rem 0 0;accent-color:var(--ink);height:1rem;}
 
   .duo{display:flex;gap:1.5rem;}
   .duo .line{flex:1;}
@@ -197,16 +168,12 @@
 
   .rates button:hover{border-color:var(--ink);color:var(--ink);}
 
-  /* ---- breakdown ---- */
+  /* ---------- table ---------- */
 
   table{width:100%;border-collapse:collapse;font-size:.875rem;}
   table td{padding:.5rem 0;border-bottom:1px solid var(--hair);}
   table tr:first-child td{border-top:1px solid var(--rule);}
-  table td:last-child{
-    text-align:right;
-    font-family:var(--mono);
-    white-space:nowrap;
-  }
+  table td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap;}
   table tr.total td{
     border-bottom:0;
     border-top:2px solid var(--ink);
@@ -214,8 +181,6 @@
     padding-top:.6rem;
   }
   table tr.total td:last-child{color:var(--red);}
-
-  /* ---- prose ---- */
 
   .prose p{font-size:.9375rem;margin:0 0 .9rem;max-width:48ch;}
   .prose p:last-child{margin-bottom:0;}
@@ -247,10 +212,66 @@
 
   footer p{margin:0 0 .5rem;max-width:48ch;}
 
-  :focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+  /* ---------- narrow ---------- */
 
   @media (max-width:23rem){
     .duo{flex-direction:column;gap:0;}
+  }
+
+  /* ---------- wide: two columns ---------- */
+
+  @media (min-width:60rem){
+    body{padding-left:2rem;padding-right:2rem;}
+
+    .masthead{padding-top:4.5rem;}
+    .standfirst{font-size:1rem;max-width:52ch;}
+
+    .layout{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 21rem;
+      gap:3.5rem;
+      align-items:start;
+    }
+
+    .aside{
+      position:sticky;
+      top:2rem;
+      order:2;
+      border-bottom:0;
+      border-left:2px solid var(--ink);
+      padding:.2rem 0 0 1.5rem;
+    }
+
+    .main{order:1;min-width:0;}
+
+    .block:first-child{padding-top:2.25rem;}
+
+    .sumrow{display:block;padding:0 0 1rem;}
+    .sumrow .k{display:block;margin-bottom:.1rem;}
+    .sumrow .v{font-size:1.85rem;line-height:1.1;display:block;}
+
+    .verdict{font-size:.8125rem;margin-top:.2rem;}
+
+    .sidebreak{
+      display:block;
+      margin-top:1.75rem;
+      padding-top:1.25rem;
+      border-top:1px solid var(--rule);
+    }
+
+    .sidebreak h2{
+      font-size:.75rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin:0 0 .7rem;
+    }
+
+    .sidebreak table{font-size:.8125rem;}
+
+    #inlineBreak{display:none;}
+
+    .duo{gap:2.5rem;}
   }
 </style>
 </head>
@@ -263,156 +284,172 @@
   <p class="standfirst">It's closer to six, because every turn resends what came before. Set a workload below and watch the pilot figure separate from the production one.</p>
 </div>
 
-<div class="summary" aria-live="polite">
-  <div class="sumrow">
-    <span class="k">As estimated</span>
-    <span class="v" id="naiveFig">—</span>
-  </div>
-  <div class="sumrow over">
-    <span class="k">As billed</span>
-    <span class="v" id="realFig">—</span>
-  </div>
-  <p class="verdict" id="verdict">Monthly. Adjust anything below.</p>
-</div>
+<div class="layout">
 
-<div class="block">
-  <h2>Workload</h2>
-  <p class="intro">One transaction, described the way a proposal would describe it.</p>
-
-  <div class="line">
-    <div class="lhead">
-      <label for="vol">Transactions per day</label>
-      <input type="number" id="vol" min="1" value="1000">
+  <div class="aside" aria-live="polite">
+    <div class="sumrow">
+      <span class="k">As estimated</span>
+      <span class="v" id="naiveFig">—</span>
     </div>
-    <input type="range" id="volR" min="0" max="6" step="0.01" value="3" aria-label="Transactions per day slider">
-  </div>
-
-  <div class="duo">
-    <div class="line">
-      <div class="lhead">
-        <label for="tin">Prompt in</label>
-        <input type="number" id="tin" min="0" value="1200">
-      </div>
+    <div class="sumrow over">
+      <span class="k">As billed</span>
+      <span class="v" id="realFig">—</span>
     </div>
-    <div class="line">
-      <div class="lhead">
-        <label for="tout">Response out</label>
-        <input type="number" id="tout" min="0" value="500">
+    <p class="verdict" id="verdict">Monthly. Adjust anything below.</p>
+
+    <div class="sidebreak">
+      <h2>Where it lands</h2>
+      <table><tbody id="tbodySide"></tbody></table>
+      <div class="tools">
+        <button type="button" class="copyBtn">Copy figures</button>
+        <button type="button" class="resetBtn">Reset</button>
       </div>
     </div>
   </div>
 
-  <div class="line">
-    <div class="lhead">
-      <label for="cur">Currency</label>
-      <select id="cur">
-        <option value="$">Dollars</option>
-        <option value="£">Pounds</option>
-        <option value="€">Euros</option>
-      </select>
-    </div>
-  </div>
-</div>
+  <div class="main">
 
-<div class="block">
-  <h2>Rates</h2>
-  <p class="intro">Per million tokens, in whichever currency you picked. Nothing is converted. These change often enough that hard-coding them would be a disservice, so the presets are tier shapes rather than any vendor's list price. Check yours.</p>
+    <div class="block">
+      <h2>Workload</h2>
+      <p class="intro">One transaction, described the way a proposal would describe it.</p>
 
-  <div class="rates">
-    <button type="button" data-in="0.10" data-out="0.40">small</button>
-    <button type="button" data-in="2.00" data-out="10.00">mid</button>
-    <button type="button" data-in="5.00" data-out="25.00">frontier</button>
-  </div>
+      <div class="line">
+        <div class="lhead">
+          <label for="vol">Transactions per day</label>
+          <input type="number" id="vol" min="1" value="1000">
+        </div>
+        <input type="range" id="volR" min="0" max="6" step="0.01" value="3" aria-label="Transactions per day">
+      </div>
 
-  <div class="duo">
-    <div class="line">
-      <div class="lhead">
-        <label for="pin">Input</label>
-        <input type="number" id="pin" min="0" step="0.01" value="2.00">
+      <div class="duo">
+        <div class="line">
+          <div class="lhead">
+            <label for="tin">Prompt in</label>
+            <input type="number" id="tin" min="0" value="1200">
+          </div>
+        </div>
+        <div class="line">
+          <div class="lhead">
+            <label for="tout">Response out</label>
+            <input type="number" id="tout" min="0" value="500">
+          </div>
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="lhead">
+          <label for="cur">Currency</label>
+          <select id="cur">
+            <option value="$">Dollars</option>
+            <option value="£">Pounds</option>
+            <option value="€">Euros</option>
+          </select>
+        </div>
       </div>
     </div>
-    <div class="line">
-      <div class="lhead">
-        <label for="pout">Output</label>
-        <input type="number" id="pout" min="0" step="0.01" value="10.00">
+
+    <div class="block">
+      <h2>Rates</h2>
+      <p class="intro">Per million tokens, in whichever currency you picked. Nothing is converted. These change often enough that hard-coding them would be a disservice, so the presets are tier shapes rather than any vendor's list price. Check yours.</p>
+
+      <div class="rates">
+        <button type="button" data-in="0.10" data-out="0.40">small</button>
+        <button type="button" data-in="2.00" data-out="10.00">mid</button>
+        <button type="button" data-in="5.00" data-out="25.00">frontier</button>
+      </div>
+
+      <div class="duo">
+        <div class="line">
+          <div class="lhead">
+            <label for="pin">Input</label>
+            <input type="number" id="pin" min="0" step="0.01" value="2.00">
+          </div>
+        </div>
+        <div class="line">
+          <div class="lhead">
+            <label for="pout">Output</label>
+            <input type="number" id="pout" min="0" step="0.01" value="10.00">
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="block">
-  <h2>Multipliers</h2>
-  <p class="intro">All of it routine behaviour. None of it in the original number.</p>
+    <div class="block">
+      <h2>Multipliers</h2>
+      <p class="intro">All of it routine behaviour. None of it in the original number.</p>
 
-  <div class="line">
-    <div class="lhead">
-      <label for="ctx">Retrieved context</label>
-      <input type="number" id="ctx" min="0" value="6000">
+      <div class="line">
+        <div class="lhead">
+          <label for="ctx">Retrieved context</label>
+          <input type="number" id="ctx" min="0" value="6000">
+        </div>
+        <p class="gloss">Grounding documents ride along on every call, not once at the start. Usually the biggest line here and the one most often forgotten.</p>
+        <input type="range" id="ctxR" min="0" max="30000" step="500" value="6000" aria-label="Retrieved context">
+      </div>
+
+      <div class="line">
+        <div class="lhead">
+          <label for="turns">Turns per task</label>
+          <input type="number" id="turns" min="1" max="50" value="3">
+        </div>
+        <p class="gloss">One if it's a single call. More if the model reaches for tools or checks itself. This is the compounding one.</p>
+        <input type="range" id="turnsR" min="1" max="12" step="1" value="3" aria-label="Turns per task">
+      </div>
+
+      <div class="line">
+        <div class="lhead">
+          <label for="tool">Tool output per turn</label>
+          <input type="number" id="tool" min="0" value="1500">
+        </div>
+        <p class="gloss">What a search or a database hands back, which then lives in the conversation for every remaining turn.</p>
+        <input type="range" id="toolR" min="0" max="8000" step="250" value="1500" aria-label="Tool output per turn">
+      </div>
+
+      <div class="line">
+        <div class="lhead">
+          <label for="retry">Retries, %</label>
+          <input type="number" id="retry" min="0" max="200" value="8">
+        </div>
+        <p class="gloss">Bad JSON, timeouts, rate limits, and users pressing the button again.</p>
+        <input type="range" id="retryR" min="0" max="50" step="1" value="8" aria-label="Retries percentage">
+      </div>
+
+      <div class="line">
+        <div class="lhead">
+          <label for="evals">Evals, %</label>
+          <input type="number" id="evals" min="0" max="200" value="10">
+        </div>
+        <p class="gloss">Sampling live traffic for quality, plus a regression run every time someone edits a prompt.</p>
+        <input type="range" id="evalsR" min="0" max="50" step="1" value="10" aria-label="Evals percentage">
+      </div>
+
+      <div class="line">
+        <div class="lhead">
+          <label for="nonprod">Non-production, %</label>
+          <input type="number" id="nonprod" min="0" max="200" value="15">
+        </div>
+        <p class="gloss">Staging, load tests, demos, and a team iterating. Same invoice.</p>
+        <input type="range" id="nonprodR" min="0" max="60" step="1" value="15" aria-label="Non-production percentage">
+      </div>
     </div>
-    <p class="gloss">Grounding documents ride along on every call, not once at the start. Usually the biggest line here and the one most often forgotten.</p>
-    <input type="range" id="ctxR" min="0" max="30000" step="500" value="6000" aria-label="Retrieved context slider">
-  </div>
 
-  <div class="line">
-    <div class="lhead">
-      <label for="turns">Turns per task</label>
-      <input type="number" id="turns" min="1" max="50" value="3">
+    <div class="block" id="inlineBreak">
+      <h2>Where it lands</h2>
+      <table><tbody id="tbodyInline"></tbody></table>
+      <div class="tools">
+        <button type="button" class="copyBtn">Copy figures</button>
+        <button type="button" class="resetBtn">Reset</button>
+      </div>
     </div>
-    <p class="gloss">One if it's a single call. More if the model reaches for tools or checks itself. This is the compounding one.</p>
-    <input type="range" id="turnsR" min="1" max="12" step="1" value="3" aria-label="Turns slider">
-  </div>
 
-  <div class="line">
-    <div class="lhead">
-      <label for="tool">Tool output per turn</label>
-      <input type="number" id="tool" min="0" value="1500">
+    <div class="block prose">
+      <h2>What's missing</h2>
+      <p>Tokens are the easiest cost to calculate and rarely the biggest. If someone reads the output before it goes anywhere, that review time will usually exceed everything on this page, and a workflow needing review is a different proposition from one that doesn't.</p>
+      <p>Also absent: the engineering to build it, the work to stop it quietly degrading, and the vector store, orchestration and logging sitting underneath. On the other side, caching and batch pricing can pull the real figure down a long way, and none of that is modelled here. Read the second number as an unoptimised ceiling.</p>
+      <p>The precision isn't the point. The distance between the two numbers is, and only the first one tends to reach the paper that gets signed.</p>
     </div>
-    <p class="gloss">What a search or a database hands back, which then lives in the conversation for every remaining turn.</p>
-    <input type="range" id="toolR" min="0" max="8000" step="250" value="1500" aria-label="Tool output slider">
-  </div>
 
-  <div class="line">
-    <div class="lhead">
-      <label for="retry">Retries, %</label>
-      <input type="number" id="retry" min="0" max="200" value="8">
-    </div>
-    <p class="gloss">Bad JSON, timeouts, rate limits, and users pressing the button again.</p>
-    <input type="range" id="retryR" min="0" max="50" step="1" value="8" aria-label="Retries slider">
   </div>
-
-  <div class="line">
-    <div class="lhead">
-      <label for="evals">Evals, %</label>
-      <input type="number" id="evals" min="0" max="200" value="10">
-    </div>
-    <p class="gloss">Sampling live traffic for quality, plus a regression run every time someone edits a prompt.</p>
-    <input type="range" id="evalsR" min="0" max="50" step="1" value="10" aria-label="Evals slider">
-  </div>
-
-  <div class="line">
-    <div class="lhead">
-      <label for="nonprod">Non-production, %</label>
-      <input type="number" id="nonprod" min="0" max="200" value="15">
-    </div>
-    <p class="gloss">Staging, load tests, demos, and a team iterating. Same invoice.</p>
-    <input type="range" id="nonprodR" min="0" max="60" step="1" value="15" aria-label="Non-production slider">
-  </div>
-</div>
-
-<div class="block">
-  <h2>Where it lands</h2>
-  <table><tbody id="tbody"></tbody></table>
-  <div class="tools">
-    <button type="button" id="copy">Copy figures</button>
-    <button type="button" id="reset">Reset</button>
-  </div>
-</div>
-
-<div class="block prose">
-  <h2>What's missing</h2>
-  <p>Tokens are the easiest cost to calculate and rarely the biggest. If someone reads the output before it goes anywhere, that review time will usually exceed everything on this page, and a workflow needing review is a different proposition from one that doesn't.</p>
-  <p>Also absent: the engineering to build it, the work to stop it quietly degrading, and the vector store, orchestration and logging sitting underneath. On the other side, caching and batch pricing can pull the real figure down a long way, and none of that is modelled here. Read the right-hand number as an unoptimised ceiling.</p>
-  <p>The precision isn't the point. The distance between the two numbers is, and only the left one tends to reach the paper that gets signed.</p>
 </div>
 
 <footer>
@@ -494,22 +531,24 @@ function calc(){
     ['Generated output', outTok*pout*scale]
   ];
 
-  $('tbody').innerHTML =
-    rows.map(([k,v]) => '<tr><td>'+k+'</td><td>'+money(v,s)+'</td></tr>').join('') +
+  const html = rows.map(([k,v]) => '<tr><td>'+k+'</td><td>'+money(v,s)+'</td></tr>').join('') +
     '<tr class="total"><td>Monthly</td><td>'+money(real,s)+'</td></tr>';
+
+  $('tbodySide').innerHTML = html;
+  $('tbodyInline').innerHTML = html;
 
   last = {s, vol, turns, mult, naive, real};
 }
 
-$('reset').addEventListener('click', () => {
+document.querySelectorAll('.resetBtn').forEach(b => b.addEventListener('click', () => {
   Object.entries(D).forEach(([k,v]) => {
     $(k).value = v;
     if ($(k+'R')) $(k+'R').value = (k === 'vol') ? Math.log10(v) : v;
   });
   calc();
-});
+}));
 
-$('copy').addEventListener('click', async e => {
+document.querySelectorAll('.copyBtn').forEach(b => b.addEventListener('click', async e => {
   const t = 'Inference estimate\n\n' + last.vol.toLocaleString() + ' transactions/day, ' +
     last.turns + ' turn(s) each\n\nAs estimated: ' + money(last.naive, last.s) + '/mo\n' +
     'As billed: ' + money(last.real, last.s) + '/mo\nFactor: ' + last.mult.toFixed(1) + '\n' +
@@ -518,7 +557,7 @@ $('copy').addEventListener('click', async e => {
   try { await navigator.clipboard.writeText(t); e.target.textContent = 'Copied'; }
   catch { e.target.textContent = 'Blocked'; }
   setTimeout(() => { e.target.textContent = 'Copy figures'; }, 1800);
-});
+}));
 
 calc();
 </script>
