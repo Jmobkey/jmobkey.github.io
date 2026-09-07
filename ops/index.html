@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operations at scale — what a Make scenario actually meters</title>
+<meta name="description" content="Make bills per module execution, not per scenario run. A working estimate of what an automation actually meters once loops, empty polls and error handlers are counted.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="prog"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="mark" href="/">Josh Murphy <em>/ AI strategy &amp; delivery</em></a>
+    <div class="right">
+      <nav>
+        <a href="/#work">Work</a>
+        <a href="/#tools">Tools</a>
+        <a href="/about/">About</a>
+      </nav>
+      <button id="theme" aria-label="Toggle light and dark theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap narrow">
+
+  <section class="plain">
+    <p class="eyebrow">TOOL — AUTOMATION</p>
+    <h1><span class="ln"><span style="--d:.1s">Make bills the modules,</span></span><span class="ln"><span style="--d:.22s">not the run.</span></span></h1>
+    <p class="lede rise" style="--d:.4s">Every module that fires is one operation. So an iterator over fifty records doesn't cost one operation, it costs fifty times everything downstream of it — and a polling trigger bills you for looking even when there's nothing there.</p>
+  </section>
+
+  <div class="readout">
+    <div class="figs">
+      <div class="fig"><i>AS SCOPED</i><b id="scoped">—</b></div>
+      <div class="fig hot"><i>AS METERED</i><b id="metered">—</b></div>
+      <div class="fig dist"><i>DISTANCE</i><b id="dist">—</b></div>
+    </div>
+    <div class="rfoot"><span>Operations per month, over a 30.4-day month.</span><span>Estimated spend <b id="spend">—</b></span></div>
+  </div>
+
+  <div class="stack" id="stack">
+    <div class="s-main" style="width:40%"></div><div class="s-loop" style="width:40%"></div>
+    <div class="s-empty" style="width:15%"></div><div class="s-err" style="width:5%"></div>
+  </div>
+  <div class="key">
+    <span><i class="s-main"></i>Main path <b id="k-main"></b></span>
+    <span><i class="s-loop"></i>Inside loops <b id="k-loop"></b></span>
+    <span><i class="s-empty"></i>Empty polls <b id="k-empty"></b></span>
+    <span><i class="s-err"></i>Error handling <b id="k-err"></b></span>
+  </div>
+
+  <div class="panel">
+    <h2>Trigger</h2>
+    <p class="note">A scheduled scenario runs whether or not there is anything to do, and the trigger module bills on every check. That line is invisible on the canvas and is routinely the largest single cost in a low-volume automation.</p>
+    <div class="grid">
+      <div class="field"><label for="trig">Trigger type</label><select id="trig"><option value="sched">Scheduled poll</option><option value="hook">Webhook / instant</option></select></div>
+      <div class="field" id="f-int"><label for="interval">Interval <span class="hint">Minutes between checks</span></label><input type="number" id="interval" value="15" min="1"></div>
+      <div class="field hidden" id="f-ev"><label for="events">Events per day</label><input type="number" id="events" value="200" min="0"></div>
+      <div class="field" id="f-hit"><label for="hit">Checks that find data, % <span class="hint">The rest still cost one operation each.</span></label><input type="number" id="hit" value="20" min="0" max="100"></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Scenario shape</h2>
+    <p class="note">Count every module that executes. Routers and filters are free; iterators and aggregators are not. Include the trigger in the main path count.</p>
+    <div class="grid">
+      <div class="field"><label for="mods">Modules in the main path <span class="hint">Everything that runs once per execution, trigger included.</span></label><input type="number" id="mods" value="8" min="1"></div>
+      <div class="field"><label for="items">Items per iteration <span class="hint">Average array length hitting your iterator. Set to 0 if there's no loop.</span></label><input type="number" id="items" value="25" min="0"></div>
+      <div class="field"><label for="loopmods">Modules inside the loop <span class="hint">Each one fires once per item. This is the multiplier people miss.</span></label><input type="number" id="loopmods" value="4" min="0"></div>
+      <div class="field"><label for="scen">Scenarios like this <span class="hint">Multiplies the whole estimate.</span></label><input type="number" id="scen" value="1" min="1"></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Reality</h2>
+    <p class="note">Error handlers, retries and the traffic your team generates testing the thing. All of it meters.</p>
+    <div class="grid">
+      <div class="field"><label for="errrate">Executions hitting an error route, %</label><input type="number" id="errrate" value="4" min="0"></div>
+      <div class="field"><label for="errmods">Modules in the error route <span class="hint">Logging, alerting, dead-letter write.</span></label><input type="number" id="errmods" value="3" min="0"></div>
+      <div class="field"><label for="dev">Development and testing, % <span class="hint">Every manual run while building bills the same as production.</span></label><input type="number" id="dev" value="12" min="0"></div>
+      <div class="field"><label for="rate">Cost per 1,000 operations <span class="hint">Plan pricing moves, so this is yours to set. Divide your monthly plan cost by its operation allowance in thousands.</span></label><input type="number" id="rate" value="0.90" step="0.01" min="0"></div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn solid" id="copy"><span>Copy figures</span></button>
+    <button class="btn" id="reset"><span>Reset</span></button>
+  </div>
+
+  <section>
+    <h2>What's missing</h2>
+    <div class="prose">
+      <p>Operations are the easiest cost to count and rarely the one that hurts. The bigger number is usually what the automation is calling: a scenario that meters 40,000 operations might be making 40,000 API calls against a service with its own per-call pricing, its own rate limits, and its own opinion about being hammered every fifteen minutes.</p>
+      <p>Also absent: data transfer on plans that meter it, the cost of a scenario sitting in an error state over a long weekend, and the engineering time to build and maintain the thing — which for anything business-critical will exceed the subscription many times over.</p>
+      <p>Two modelling choices worth knowing about. An empty poll is counted as exactly one operation, which is right for a trigger that returns nothing but understates any scenario doing work before its filter. And development traffic is applied as a flat percentage of production, when in practice it's front-loaded and lumpy.</p>
+      <p><strong>The point isn't the operation count. It's that the number on the canvas and the number on the invoice are different numbers, and only the first one gets used to decide whether to build.</strong></p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap narrow">
+    <div class="foot-row">
+      <div>Runs in your browser. Nothing sent, nothing stored, no analytics.</div>
+      <div><a href="/">More tools</a> &nbsp;·&nbsp; <a href="https://github.com/jmobkey/automation-architecture">Architecture notes</a></div>
+    </div>
+    <p class="disclaimer">General practice rather than professional advice. Plan pricing and operation accounting change, so check current documentation before committing a budget.</p>
+  </div>
+</footer>
+
+<script src="/app.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const DAYS = 30.4, MINS = DAYS*24*60;
+const defaults = {trig:'sched',interval:15,events:200,hit:20,mods:8,items:25,loopmods:4,scen:1,errrate:4,errmods:3,dev:12,rate:0.90};
+const num = id => { const v = parseFloat($(id).value); return isFinite(v) && v >= 0 ? v : 0; };
+const fmt = n => Math.round(n).toLocaleString();
+
+function toggleTrigger(){
+  const s = $('trig').value === 'sched';
+  $('f-int').classList.toggle('hidden', !s);
+  $('f-hit').classList.toggle('hidden', !s);
+  $('f-ev').classList.toggle('hidden', s);
+}
+
+function compute(){
+  const sched = $('trig').value === 'sched';
+  const scen = Math.max(1, num('scen'));
+  const runs = sched ? MINS/Math.max(1,num('interval')) : num('events')*DAYS;
+  const hit = sched ? Math.min(100,num('hit'))/100 : 1;
+  const productive = runs*hit, empty = runs - productive;
+  const mods = Math.max(1,num('mods'));
+
+  const scoped = runs * (mods + num('loopmods')) * scen;
+
+  const mainOps = productive*mods;
+  const loopOps = productive*num('items')*num('loopmods');
+  const emptyOps = empty;
+  const errOps = productive*(num('errrate')/100)*num('errmods');
+  const metered = (mainOps+loopOps+emptyOps+errOps)*scen*(1+num('dev')/100);
+
+  $('scoped').textContent = fmt(scoped);
+  $('metered').textContent = fmt(metered);
+  $('dist').textContent = scoped > 0 ? (metered/scoped).toFixed(1)+'\u00D7' : '\u2014';
+  $('spend').textContent = '$' + (metered/1000*num('rate')).toLocaleString(undefined,{maximumFractionDigits:0}) + '/mo';
+
+  const parts = [mainOps,loopOps,emptyOps,errOps].map(v => v*scen);
+  const tot = parts.reduce((a,b)=>a+b,0) || 1;
+  const bars = $('stack').children;
+  parts.forEach((v,i) => bars[i].style.width = (v/tot*100)+'%');
+  ['k-main','k-loop','k-empty','k-err'].forEach((id,i) => $(id).textContent = Math.round(parts[i]/tot*100)+'%');
+  return {scoped,metered};
+}
+
+Object.keys(defaults).forEach(id => $(id).addEventListener('input', () => { toggleTrigger(); compute(); }));
+$('reset').addEventListener('click', () => { for(const k in defaults) $(k).value = defaults[k]; toggleTrigger(); compute(); });
+$('copy').addEventListener('click', async () => {
+  const {scoped,metered} = compute();
+  try { await navigator.clipboard.writeText(`As scoped: ${fmt(scoped)} ops/mo\nAs metered: ${fmt(metered)} ops/mo\nDistance: ${(metered/scoped).toFixed(1)}x`);
+    $('copy').querySelector('span').textContent = 'Copied'; }
+  catch { $('copy').querySelector('span').textContent = 'Press Ctrl+C'; }
+  setTimeout(() => $('copy').querySelector('span').textContent = 'Copy figures', 1600);
+});
+toggleTrigger(); compute();
+</script>
+</body>
+</html>
