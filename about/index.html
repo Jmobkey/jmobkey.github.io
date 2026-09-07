@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,124 +8,47 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --zinc:#D5DAD3;
-  --paper:#EDEFE9;
-  --ink:#131E1C;
-  --ink-soft:#4C5A55;
-  --gas:#EFBE1C;
-  --oxide:#9A4526;
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;color:var(--ink);
-  font-family:'Archivo',system-ui,sans-serif;
-  font-size:17px;line-height:1.6;
-  background-color:var(--zinc);
-  background-image:
-    linear-gradient(rgba(19,30,28,.028) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(19,30,28,.028) 1px,transparent 1px);
-  background-size:26px 26px;
-}
-.wrap{max-width:1120px;margin:0 auto;padding:0 30px}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--gas);outline-offset:3px}
-
-header{border-bottom:1px solid rgba(19,30,28,.28)}
-.bar{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:17px 0}
-.mark{font-weight:900;letter-spacing:-.035em;font-size:1.02rem;text-decoration:none}
-.mark em{font-style:normal;font-weight:400;color:var(--ink-soft);letter-spacing:0}
-nav{display:flex;gap:20px;font-size:.93rem}
-nav a{text-decoration:none;padding-bottom:3px;border-bottom:2px solid transparent}
-nav a:hover,nav a:focus-visible{border-bottom-color:var(--gas)}
-nav a[aria-current]{border-bottom-color:rgba(19,30,28,.35)}
-
-.open{padding:70px 0 60px}
-.open .wrap{max-width:760px}
-h1{font-size:clamp(2.3rem,5.4vw,3.7rem);line-height:1;letter-spacing:-.045em;font-weight:900;margin:0 0 26px;max-width:16ch;text-wrap:balance}
-.open p{font-size:1.12rem;margin:0 0 18px;max-width:62ch;color:var(--ink-soft)}
-.open p.first{color:var(--ink);font-size:1.22rem;line-height:1.5}
-
-.band-paper{background:var(--paper);border-top:1px solid rgba(19,30,28,.28);border-bottom:1px solid rgba(19,30,28,.28)}
-.band-paper .wrap{padding-top:56px;padding-bottom:58px}
-h2{font-size:1.5rem;letter-spacing:-.03em;font-weight:800;margin:0 0 6px}
-.h2note{margin:0 0 30px;color:var(--ink-soft);font-size:.95rem;max-width:58ch}
-
-.rec{display:grid;grid-template-columns:112px 1fr;gap:28px;padding:20px 0;border-top:1px solid rgba(19,30,28,.24)}
-.rec:last-of-type{border-bottom:1px solid rgba(19,30,28,.24)}
-.rec-yr{font-family:'IBM Plex Mono',monospace;font-size:.76rem;color:var(--ink-soft);padding-top:4px;white-space:nowrap}
-.rec h3{margin:0 0 4px;font-size:1.08rem;font-weight:700;letter-spacing:-.02em}
-.rec .org{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--ink-soft);display:block;margin-bottom:8px}
-.rec p{margin:0;font-size:.96rem;max-width:62ch;color:var(--ink-soft)}
-.rec.now h3::after{
-  content:"CURRENT";margin-left:10px;vertical-align:2px;
-  font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.09em;
-  background:var(--gas);border:1px solid rgba(19,30,28,.4);padding:2px 6px;font-weight:600;
-}
-
-.band-ink{background:var(--ink);color:var(--paper)}
-.band-ink .wrap{padding-top:70px;padding-bottom:70px;max-width:800px}
-.band-ink h2{color:var(--paper);font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.12;max-width:22ch;margin-bottom:26px}
-.band-ink p{max-width:60ch;margin:0 0 19px;color:#C3CCC7;font-size:1.04rem}
-.band-ink p.punch{color:var(--paper);font-weight:500}
-
-.creds{padding:56px 0}
-.cred-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:16px;margin-top:26px}
-.cred{border:1px solid rgba(19,30,28,.3);background:var(--paper);padding:16px 18px}
-.cred b{display:block;font-size:.98rem;font-weight:700;letter-spacing:-.015em;margin-bottom:3px}
-.cred span{font-family:'IBM Plex Mono',monospace;font-size:.71rem;color:var(--ink-soft);line-height:1.55;display:block}
-.creds .more{margin:22px 0 0;color:var(--ink-soft);font-size:.93rem}
-
-.closing{padding:0 0 56px}
-.closing .wrap{max-width:660px}
-.closing p{margin:0 0 17px;color:var(--ink-soft);font-size:1rem}
-.closing p:last-child{margin:0}
-.closing a{font-weight:500;color:var(--ink)}
-
-footer{border-top:1px solid rgba(19,30,28,.28);padding:24px 0 52px;font-size:.9rem;color:var(--ink-soft)}
-.foot-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:baseline}
-footer a{color:var(--ink);font-weight:500}
-
-@media (max-width:760px){
-  .rec{grid-template-columns:1fr;gap:8px}
-  .rec-yr{padding-top:0}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<div id="prog"></div>
 
 <header>
   <div class="wrap bar">
-    <a class="mark" href="/">Josh Murphy <em>/ AI strategy and delivery</em></a>
-    <nav>
-      <a href="/#work">Work</a>
-      <a href="/cost/">Calculator</a>
-      <a href="/about/" aria-current="page">About</a>
-      <a href="https://www.linkedin.com/in/josh-murphy-96575b184">LinkedIn</a>
-    </nav>
+    <a class="mark" href="/">Josh Murphy <em>/ AI strategy &amp; delivery</em></a>
+    <div class="right">
+      <nav>
+        <a href="/#work">Work</a>
+        <a href="/#tools">Tools</a>
+        <a href="/about/" aria-current="page">About</a>
+        <a href="https://www.linkedin.com/in/josh-murphy-96575b184">LinkedIn</a>
+      </nav>
+      <button id="theme" aria-label="Toggle light and dark theme">◐</button>
+    </div>
   </div>
 </header>
 
 <main>
 
-  <div class="open">
-    <div class="wrap">
-      <h1>I learned this trade in mechanical rooms.</h1>
-      <p class="first">Six years as an HVAC-R service technician and a Red Seal gasfitter before any of the AI work. I now lead AI strategy and delivery across Canada and the United States for Master Group, an HVAC-R distributor with more than eighty branches and seventy years behind it.</p>
-      <p>The route between those two things wasn't planned, and the field years turned out to matter far more than I expected them to.</p>
+  <section class="plain">
+    <div class="wrap narrow">
+      <h1>
+        <span class="ln"><span style="--d:.12s">I learned this trade</span></span>
+        <span class="ln"><span style="--d:.24s">in mechanical rooms.</span></span>
+      </h1>
+      <p class="lede first rise" style="--d:.45s">Six years as an HVAC-R service technician and a Red Seal gasfitter before any of the AI work. I now lead AI strategy and delivery across Canada and the United States for Master Group, an HVAC-R distributor with more than eighty branches and seventy years behind it.</p>
+      <p class="lede rise" style="--d:.58s">The route between those two things wasn't planned, and the field years turned out to matter far more than I expected them to.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="band-paper">
-    <div class="wrap">
-      <h2>Service record</h2>
-      <p class="h2note">Roughly chronological, and the short version. The longer one involves a lot of driving.</p>
+  <section>
+    <div class="wrap narrow">
+      <p class="eyebrow rise">01 — HISTORY</p>
+      <h2 class="rise" style="--d:.05s">Service record</h2>
+      <p class="h2note rise" style="--d:.1s">Roughly chronological, and the short version. The longer one involves a lot of driving.</p>
 
-      <div class="rec now">
-        <div class="rec-yr">2026 —</div>
+      <div class="job now rise">
+        <div class="job-meta"><b>2026 —</b></div>
         <div>
           <h3>Lead, AI Strategy &amp; Delivery</h3>
           <span class="org">Master Group · North America</span>
@@ -133,8 +56,8 @@ footer a{color:var(--ink);font-weight:500}
         </div>
       </div>
 
-      <div class="rec">
-        <div class="rec-yr">2025 – 2026</div>
+      <div class="job rise">
+        <div class="job-meta"><b>2025 – 2026</b></div>
         <div>
           <h3>AI Specialist</h3>
           <span class="org">Master Group · National</span>
@@ -142,8 +65,8 @@ footer a{color:var(--ink);font-weight:500}
         </div>
       </div>
 
-      <div class="rec">
-        <div class="rec-yr">2025</div>
+      <div class="job rise">
+        <div class="job-meta"><b>2025</b></div>
         <div>
           <h3>Applied AI Developer</h3>
           <span class="org">Master Group · four-month pilot programme</span>
@@ -151,8 +74,8 @@ footer a{color:var(--ink);font-weight:500}
         </div>
       </div>
 
-      <div class="rec">
-        <div class="rec-yr">2024 – 2025</div>
+      <div class="job rise">
+        <div class="job-meta"><b>2024 – 2025</b></div>
         <div>
           <h3>AI adoption, unofficially</h3>
           <span class="org">Master Group · on-call, alongside a full-time role</span>
@@ -160,8 +83,8 @@ footer a{color:var(--ink);font-weight:500}
         </div>
       </div>
 
-      <div class="rec">
-        <div class="rec-yr">2023 – 2025</div>
+      <div class="job rise">
+        <div class="job-meta"><b>2023 – 2025</b></div>
         <div>
           <h3>Branch representative</h3>
           <span class="org">Master Group · Edmonton</span>
@@ -169,8 +92,8 @@ footer a{color:var(--ink);font-weight:500}
         </div>
       </div>
 
-      <div class="rec">
-        <div class="rec-yr">2022 – 2023</div>
+      <div class="job rise">
+        <div class="job-meta"><b>2022 – 2023</b></div>
         <div>
           <h3>Lead Facilities Technician, and Safety Technician</h3>
           <span class="org">7-Eleven · St. Albert, Fort Saskatchewan, Northern Alberta</span>
@@ -178,8 +101,8 @@ footer a{color:var(--ink);font-weight:500}
         </div>
       </div>
 
-      <div class="rec">
-        <div class="rec-yr">2019 – 2022</div>
+      <div class="job rise">
+        <div class="job-meta"><b>2019 – 2022</b></div>
         <div>
           <h3>Heating &amp; Air Conditioning Technician</h3>
           <span class="org">Action Furnace, then Legacy Heating &amp; Cooling · Edmonton</span>
@@ -187,57 +110,43 @@ footer a{color:var(--ink);font-weight:500}
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="band-ink">
-    <div class="wrap">
-      <h2>What the field taught me that the courses didn't.</h2>
-      <p>A replacement part that almost matches is worse than no part at all, because someone will fit it. Nearly right, in a mechanical room, is a callback at best.</p>
-      <p class="punch">Most of the design work in an AI system is deciding which parts can be probabilistic and which have to stay deterministic. That isn't a modelling skill. It comes from having been the person holding the wrong part at seven in the morning.</p>
-      <p>The second thing is who the user actually is. A contractor on a roof with gloves on and one bar of signal is not the user most enterprise software is designed for, and a great deal of it quietly dies on that gap. I spent six years being that user.</p>
-      <p>The third is that adoption is the whole game. Technology was never the hard part of getting AI into a distribution business. Data access, process reality and ownership were, and they still are.</p>
+  <section class="story">
+    <div class="wrap narrow">
+      <p class="eyebrow rise">02 — WHY IT MATTERS</p>
+      <h2 class="rise" style="--d:.05s">What the field taught me that the courses didn't.</h2>
+      <p class="rise" style="--d:.1s">A replacement part that almost matches is worse than no part at all, because someone will fit it. Nearly right, in a mechanical room, is a callback at best.</p>
+      <p class="punch rise" style="--d:.18s">Most of the design work in an AI system is deciding which parts can be probabilistic and which have to stay deterministic. That isn't a modelling skill. It comes from having been the person holding the wrong part at seven in the morning.</p>
+      <p class="rise" style="--d:.26s">The second thing is who the user actually is. A contractor on a roof with gloves on and one bar of signal is not the user most enterprise software is designed for, and a great deal of it quietly dies on that gap. I spent six years being that user.</p>
+      <p class="rise" style="--d:.34s">The third is that adoption is the whole game. Technology was never the hard part of getting AI into a distribution business. Data access, process reality and ownership were, and they still are.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="creds">
-    <div class="wrap">
-      <h2>Credentials</h2>
-      <p class="h2note">Workflow automation is a large part of the day job, which is why I took the Make path end to end.</p>
+  <section>
+    <div class="wrap narrow">
+      <p class="eyebrow rise">03 — CREDENTIALS</p>
+      <h2 class="rise" style="--d:.05s">Credentials</h2>
+      <p class="h2note rise" style="--d:.1s">Workflow automation is a large part of the day job, which is why I took the Make path end to end.</p>
       <div class="cred-grid">
-        <div class="cred">
-          <b>Journeyman Gasfitter, Class B</b>
-          <span>NAIT · Red Seal endorsed · 2022</span>
-        </div>
-        <div class="cred">
-          <b>BSc, Computer Science</b>
-          <span>University of the People · conferring Dec 2026</span>
-        </div>
-        <div class="cred">
-          <b>AI Developer Professional Certificate</b>
-          <span>IBM · 2026</span>
-        </div>
-        <div class="cred">
-          <b>Product Manager Professional Certificate</b>
-          <span>IBM · 2026</span>
-        </div>
-        <div class="cred">
-          <b>Make Academy, Foundation to Advanced</b>
-          <span>Make · full certification path · 2024–2025</span>
-        </div>
-        <div class="cred">
-          <b>Business Intelligence Certificate</b>
-          <span>Google · 2026</span>
-        </div>
+        <div class="cred rise"><b>Journeyman Gasfitter, Class B</b><span>NAIT · Red Seal endorsed · 2022</span></div>
+        <div class="cred rise" style="--d:.05s"><b>BSc, Computer Science</b><span>University of the People · conferring Dec 2026</span></div>
+        <div class="cred rise" style="--d:.1s"><b>AI Developer Professional Certificate</b><span>IBM · 2026</span></div>
+        <div class="cred rise" style="--d:.15s"><b>Product Manager Professional Certificate</b><span>IBM · 2026</span></div>
+        <div class="cred rise" style="--d:.2s"><b>Make Academy, Foundation to Advanced</b><span>Make · full certification path · 2024–2025</span></div>
+        <div class="cred rise" style="--d:.25s"><b>Business Intelligence Certificate</b><span>Google · 2026</span></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="closing">
-    <div class="wrap">
-      <p>I'm in Edmonton, Alberta. Outside the day job I build small tools that try to make one decision in enterprise AI easier to reason about, and I publish them <a href="/">here</a> with their limitations stated plainly.</p>
-      <p>If something on this site looks wrong, it might well be. <a href="mailto:josh_p_murphy@hotmail.ca">Tell me</a>.</p>
+  <section>
+    <div class="wrap narrow">
+      <div class="prose">
+        <p class="rise">I'm in Edmonton, Alberta. Outside the day job I build small tools that try to make one decision in enterprise AI easier to reason about, and I publish them <a href="/#tools">here</a> with their limitations stated plainly.</p>
+        <p class="rise" style="--d:.08s">If something on this site looks wrong, it might well be. <a href="mailto:josh_p_murphy@hotmail.ca">Tell me</a>.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
 </main>
 
@@ -248,5 +157,6 @@ footer a{color:var(--ink);font-weight:500}
   </div>
 </footer>
 
+<script src="/app.js"></script>
 </body>
 </html>
