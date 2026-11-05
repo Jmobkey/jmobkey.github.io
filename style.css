@@ -370,3 +370,81 @@ fieldset.q legend{font-family:var(--ui);font-size:1.2rem;font-weight:700;line-he
 .areas{margin-top:72px}
 .areas h2{font-size:clamp(1.7rem,3.6vw,2.4rem);margin:0 0 18px}
 .review-band .areas{margin-top:0}
+
+/* ============================================
+   Energy pass: a second and third colour, colour-blocked tiles,
+   a ticker, a sticker, big numerals.
+   ============================================ */
+:root{--sun:#FFD23F;--coral:#FF6B4A}
+
+/* hero sticker */
+.hero{position:relative;overflow:hidden}
+.sticker{position:absolute;right:max(32px,calc((100vw - 1116px)/2));top:64px;width:168px;height:168px;border-radius:50%;background:var(--sun);color:#0D0F1A;display:grid;place-content:center;text-align:center;text-decoration:none;font-family:var(--ui);font-weight:800;font-stretch:80%;font-size:1.55rem;line-height:1;transform:rotate(-9deg);box-shadow:0 0 0 6px rgba(13,15,26,.9);transition:transform .35s var(--ease)}
+.sticker:hover{transform:rotate(3deg) scale(1.06)}
+@media (max-width:980px){.sticker{width:116px;height:116px;font-size:1.05rem;top:auto;bottom:26px;right:20px;box-shadow:0 0 0 4px rgba(13,15,26,.9)}}
+
+/* ticker */
+.ticker{background:var(--ink);color:var(--sun);overflow:hidden;display:flex;white-space:nowrap;border-block:0}
+.ticker .track{display:flex;flex:none;gap:0;animation:tick 38s linear infinite;padding:18px 0}
+.ticker span{font-family:var(--ui);font-weight:800;font-stretch:78%;font-size:clamp(1.5rem,3.2vw,2.3rem);letter-spacing:.005em;padding:0 .5em;position:relative}
+.ticker span::after{content:"";display:inline-block;width:.42em;height:.42em;background:var(--coral);margin-left:1em;vertical-align:.08em}
+@keyframes tick{to{transform:translateX(-100%)}}
+
+/* big numerals in the review band */
+.stats{display:flex;gap:40px;margin:30px 0 6px}
+.stats b{display:block;font-family:var(--ui);font-weight:800;font-stretch:78%;font-size:clamp(3.8rem,8vw,6rem);line-height:.9;color:var(--brandTx);letter-spacing:-.02em}
+.stats span{font-family:var(--ui);font-weight:700;font-size:.98rem;color:var(--tx)}
+.band{background:var(--bg2);position:relative}
+.areas li b{color:var(--brandTx)}
+
+/* work: bigger years in colour */
+.job-meta b{color:var(--brandTx);font-size:3.2rem}
+.job:nth-of-type(3n+2) .job-meta b{color:var(--flag)}
+.job p.role{background:linear-gradient(transparent 62%,color-mix(in srgb,var(--sun) 55%,transparent) 62%);padding:0 2px;display:inline}
+.job p.role b{background:none}
+
+/* capabilities: colour-blocked tiles */
+.gauges{gap:0;grid-template-columns:repeat(3,minmax(0,1fr))}
+.gauge{border:0;padding:30px 28px 34px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between;gap:26px;background:var(--bg2);color:var(--tx)}
+.gauge b{font-size:1.75rem;font-stretch:84%;line-height:1.02;margin:0}
+.gauge span{font-size:1rem;margin:0}
+.gauge:nth-child(1){background:var(--brand);color:#fff}.gauge:nth-child(1) span{color:rgba(255,255,255,.9)}
+.gauge:nth-child(2){background:var(--sun);color:#0D0F1A}.gauge:nth-child(2) span{color:#2a2d3d}
+.gauge:nth-child(3){background:var(--ink);color:#fff}.gauge:nth-child(3) span{color:#B9BFDC}
+.gauge:nth-child(4){background:var(--coral);color:#0D0F1A}.gauge:nth-child(4) span{color:#2a1a16}
+.gauge:nth-child(5){background:var(--bg2)}
+.gauge:nth-child(6){background:var(--brand);color:#fff}.gauge:nth-child(6) span{color:rgba(255,255,255,.9)}
+@media (max-width:900px){.gauges{grid-template-columns:repeat(2,minmax(0,1fr))}.gauge:nth-child(3){background:var(--sun);color:#0D0F1A}.gauge:nth-child(3) span{color:#2a2d3d}.gauge:nth-child(2){background:var(--ink);color:#fff}.gauge:nth-child(2) span{color:#B9BFDC}}
+@media (max-width:600px){.gauges{grid-template-columns:1fr}}
+
+/* tools: coloured tab on every row, row lights up on hover */
+.tool{border-left:12px solid var(--c,var(--brand));padding:34px 28px;transition:background .3s}
+.tool:hover{background:var(--bg2)}
+.tools-grid .tool:nth-child(2){--c:var(--coral)}
+.tools-grid .tool:nth-child(3){--c:var(--sun)}
+.tools-grid .tool:nth-child(4){--c:var(--ink)}
+.tools-grid .tool:nth-child(5){--c:var(--brand)}
+html[data-theme="dark"] .tools-grid .tool:nth-child(4){--c:#ECEEFA}
+@media (max-width:860px){.tool{padding:28px 18px;border-left-width:8px}}
+
+/* story: the headline gets the sun */
+.story h2{color:var(--sun)}
+.story{position:relative}
+.story::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:linear-gradient(var(--brand) 0 33%,var(--sun) 33% 66%,var(--coral) 66%)}
+
+/* subpages: a colour bar under the headline */
+main.wrap .plain>h1{position:relative;padding-bottom:30px}
+main.wrap .plain>h1::after{content:"";position:absolute;left:0;bottom:0;width:120px;height:12px;background:linear-gradient(90deg,var(--brand) 0 33%,var(--sun) 33% 66%,var(--coral) 66%)}
+.about-hero h1{position:relative;padding-bottom:30px}
+.about-hero h1::after{content:"";position:absolute;left:0;bottom:0;width:120px;height:12px;background:linear-gradient(90deg,var(--brand) 0 33%,var(--sun) 33% 66%,var(--coral) 66%)}
+.panel{border-top-color:var(--brand)}
+.step{border-left-color:var(--sun)}
+
+/* contact: sun buttons */
+.contact .btn.solid{--solidbg:var(--sun);--solidtx:#0D0F1A}
+.contact .btn.solid:hover{background:#fff;color:#0D0F1A;border-color:#fff}
+
+@media (prefers-reduced-motion:reduce){.ticker{overflow-x:auto}.ticker .track{animation:none}}
+@media print{.ticker,.sticker{display:none!important}.gauge{background:#fff!important;color:#111!important;border-top:2px solid #111}.story::before{display:none}}
+.job p.role{background:none;display:block;padding:0}
+.job p.role b{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--sun) 70%,transparent) 58%);padding:0 3px}
