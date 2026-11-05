@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Production readiness review — is your AI project ready to scale?</title>
+<meta name="description" content="Eighteen statements across the six areas where AI projects fail. Get a verdict, your weakest link and where to start. Runs in your browser; nothing is sent anywhere.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0C1412">
+<link rel="canonical" href="https://jmobkey.github.io/review/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Josh Murphy">
+<meta property="og:title" content="Production readiness review — is your AI project ready to scale?">
+<meta property="og:description" content="Eighteen statements across the six areas where AI projects fail. Get a verdict, your weakest link and where to start. Runs in your browser; nothing is sent anywhere.">
+<meta property="og:url" content="https://jmobkey.github.io/review/">
+<meta property="og:image" content="https://jmobkey.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Josh Murphy: most AI projects don't fail on the model.">
+<meta name="twitter:card" content="summary_large_image">
+<noscript><style>.rise{opacity:1}h1 .ln>span{transform:none}.meter>i{clip-path:inset(0 calc(100% - var(--v,0%)) 0 0)}.dial i{transform:scaleX(1)}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="prog"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="mark" href="/">Josh Murphy <em>/ AI strategy &amp; delivery</em></a>
+    <div class="right">
+      <nav aria-label="Primary">
+        <a class="cta" href="/review/" aria-current="page">Review</a>
+        <a class="hide-s" href="/#work">Work</a>
+        <a class="hide-s" href="/#tools">Tools</a>
+        <a href="/about/">About</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <button id="theme" aria-label="Toggle light and dark theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap narrow">
+
+  <!-- intro -->
+  <section class="plain" id="intro">
+    <h1><span class="ln"><span style="--d:.1s">Is it ready to</span></span><span class="ln"><span style="--d:.22s">leave the pilot?</span></span></h1>
+    <p class="lede rise" style="--d:.4s">Eighteen statements about your AI project, covering the six places projects tend to fail after a good pilot. Answer honestly and you get a verdict, your weakest link, and where to start.</p>
+    <p class="lede rise" style="--d:.5s">It takes about five minutes. Nothing you enter leaves your browser.</p>
+    <div class="cta-row rise" style="--d:.6s">
+      <button class="btn solid" id="start"><span>Run the review</span></button>
+    </div>
+
+    <div class="areas rise" style="--d:.7s">
+      <h2>What it covers</h2>
+      <ul id="area-list"></ul>
+    </div>
+  </section>
+
+  <!-- questions -->
+  <section class="plain" id="quiz" hidden>
+    <p class="step-count" id="step-count"></p>
+    <div class="pips" id="pips" aria-hidden="true"></div>
+    <h1 class="h1-sm" id="area-title" tabindex="-1"></h1>
+    <p class="lede" id="area-intro"></p>
+    <form id="qs" class="qs" onsubmit="return false"></form>
+    <div class="actions" style="margin:28px 0 0">
+      <button class="btn" id="back" type="button"><span>Back</span></button>
+      <button class="btn solid" id="next" type="button" disabled><span>Next area</span></button>
+    </div>
+  </section>
+
+  <!-- result -->
+  <section class="plain" id="result" hidden>
+    <p class="step-count">Your result</p>
+    <h1 class="h1-sm" id="verdict-h" tabindex="-1"></h1>
+    <p class="lede" id="verdict-p"></p>
+
+    <div class="rv-card">
+      <div class="rv-head"><b>Production readiness</b><span id="overall"></span></div>
+      <div id="rv-list" class="rv"></div>
+    </div>
+
+    <h2 id="start-h" style="margin-top:44px"></h2>
+    <div id="gaps" class="gaps"></div>
+
+    <div class="actions">
+      <button class="btn solid" id="copy"><span>Copy link to this result</span></button>
+      <button class="btn" id="print"><span>Print or save as PDF</span></button>
+      <button class="btn" id="again"><span>Run the review again</span></button>
+    </div>
+  </section>
+
+  <section id="notes">
+    <h2>What's missing</h2>
+    <div class="prose">
+      <p>This is a self-assessment, so it is only as honest as your answers. If you are unsure about a statement, answer "Partly". If nobody can answer it at all, that is the finding.</p>
+      <p>Choices worth knowing about. The verdict follows your weakest area rather than the average, because a project fails at its weakest link. Each area has three statements on a four-point scale, so scores are coarse. The thresholds are arbitrary and meant to be argued with.</p>
+      <p>The six areas come from experience of what stalls AI projects after a successful pilot, not from a published standard. This doesn't replace a security, legal or technical review.</p>
+      <p><strong>A strong average hides the one thing that stops the project. That's why the verdict ignores it.</strong></p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap narrow">
+    <div class="foot-row">
+      <div>Runs in your browser. Answers are never sent; a result link carries them in the web address only.</div>
+      <div><a href="/#tools">More tools</a> &nbsp;·&nbsp; <a href="/line/">Where the line goes</a></div>
+    </div>
+    <p class="disclaimer">General practice rather than professional advice. Use the result to start a conversation, not to end one.</p>
+  </div>
+</footer>
+
+<script src="/app.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const OPTS = ['Not at all', 'Partly', 'Mostly', 'Fully'];
+
+const AREAS = [
+  { name: 'Data access',
+    intro: 'Whether the system can reach the data it needs in production, and whether that data can be trusted.',
+    summary: 'Can it reach the data it needs, today, in production?',
+    q: ['The data this needs is available to the system in production, not just in a demo or an export.',
+        'Someone has checked that the data is accurate and current enough for decisions that matter.',
+        'We have the right to use this data this way, covering privacy, contracts and licences.'],
+    act: 'Pull one real week of production data through the system end to end. Settle accuracy and permission to use it before you build anything else.',
+    link: null },
+  { name: 'Process fit',
+    intro: 'Whether it matches how the work really happens, rather than how the process diagram says it does.',
+    summary: 'Does it match how the work really happens?',
+    q: ['The people who do this work today helped design it.',
+        'It has been tested on real, messy cases, not just clean examples.',
+        'It fits into the tools and steps people already use, rather than adding a new place to go.'],
+    act: 'Sit with the people who do the work and run the system on their hardest real cases. Fix the fit before you widen the rollout.',
+    link: null },
+  { name: 'Ownership',
+    intro: 'Who answers for the outcome after launch, and who keeps it running when the builders move on.',
+    summary: 'Who owns it in a year?',
+    q: ['A named person owns the outcome, not just the build.',
+        'That owner has the time and budget to keep it running after launch.',
+        'There is a plan for who maintains it if the original builders move on.'],
+    act: 'Name one owner for the outcome, give them time and budget after launch, and write down who maintains it when the builders move on.',
+    link: { href: '/score/', text: 'Score ideas on ownership and data' } },
+  { name: 'Decision design',
+    intro: 'Whether you have decided which steps the model handles, which a person handles, and which stay rules.',
+    summary: 'Is the line between model, person and rule drawn?',
+    q: ['We have decided which steps the model decides, which a person decides, and which stay rules.',
+        'Wherever a near-miss is costly, a deterministic check stands between the model and the outcome.',
+        'The model is limited to what it is measurably good at, such as reading, drafting and matching.'],
+    act: 'Draw the line. For each step, decide whether a rule, a person or the model makes the final call, and put a check in front of anything costly.',
+    link: { href: '/line/', text: 'Map the line step by step' } },
+  { name: 'Economics',
+    intro: 'Whether you know what it costs at production volume, and whether the case survives a change in usage or price.',
+    summary: 'Do you know what it costs at production volume?',
+    q: ['We have estimated the cost at production volume, including retries, retrieved context and testing.',
+        'We know what it replaces or saves, in numbers someone has agreed to.',
+        'The business case still holds if usage doubles or prices change.'],
+    act: 'Cost one production month including retries, retrieved context and testing, then test the case at double the usage.',
+    link: { href: '/cost/', text: 'Estimate the inference cost' } },
+  { name: 'Governance',
+    intro: 'Whether you would notice when it is wrong, and what happens next.',
+    summary: 'Would you notice when it is wrong, and what happens then?',
+    q: ['We would notice a drop in quality through monitoring or sampling, not through user complaints.',
+        'There is a defined process for when the model is wrong: who is told, who fixes it, who decides.',
+        'Decisions and model outputs are logged well enough to audit later.'],
+    act: 'Decide how you will notice a drop in quality, who is told and who fixes it. Log decisions so they can be audited.',
+    link: { href: 'https://github.com/jmobkey/automation-architecture', text: 'Read the reliability standards' } }
+];
+const N = AREAS.length, PER = 3;
+
+let answers = Array(N * PER).fill(null);
+let step = 0;
+
+const views = { intro: $('intro'), quiz: $('quiz'), result: $('result') };
+function show(name) {
+  Object.entries(views).forEach(([k, el]) => { el.hidden = k !== name; });
+  $('notes').hidden = name === 'quiz';
+  window.scrollTo({ top: 0 });
+}
+
+/* intro list */
+AREAS.forEach(a => {
+  const li = document.createElement('li');
+  const b = document.createElement('b');
+  b.textContent = a.name;
+  const s = document.createElement('span');
+  s.textContent = a.summary;
+  li.append(b, s);
+  $('area-list').appendChild(li);
+});
+
+/* questions */
+function renderStep() {
+  const a = AREAS[step];
+  $('step-count').textContent = 'Area ' + (step + 1) + ' of ' + N;
+  $('area-title').textContent = a.name;
+  $('area-intro').textContent = a.intro;
+  $('pips').innerHTML = '';
+  for (let i = 0; i < N; i++) {
+    const p = document.createElement('i');
+    if (i < step) p.className = 'done';
+    if (i === step) p.className = 'now';
+    $('pips').appendChild(p);
+  }
+  const form = $('qs');
+  form.textContent = '';
+  a.q.forEach((text, j) => {
+    const n = step * PER + j;
+    const fs = document.createElement('fieldset');
+    fs.className = 'q';
+    const lg = document.createElement('legend');
+    lg.textContent = text;
+    const row = document.createElement('div');
+    row.className = 'opts';
+    OPTS.forEach((label, v) => {
+      const l = document.createElement('label');
+      l.className = 'opt';
+      const inp = document.createElement('input');
+      inp.type = 'radio';
+      inp.name = 'q' + n;
+      inp.value = v;
+      if (answers[n] === v) inp.checked = true;
+      inp.addEventListener('change', () => { answers[n] = v; refreshNav(); });
+      const sp = document.createElement('span');
+      sp.textContent = label;
+      l.append(inp, sp);
+      row.appendChild(l);
+    });
+    fs.append(lg, row);
+    form.appendChild(fs);
+  });
+  $('back').hidden = step === 0;
+  $('next').querySelector('span').textContent = step === N - 1 ? 'See the result' : 'Next area';
+  refreshNav();
+  show('quiz');
+  $('area-title').focus({ preventScroll: true });
+}
+function refreshNav() {
+  const done = [0, 1, 2].every(j => answers[step * PER + j] !== null);
+  $('next').disabled = !done;
+}
+
+/* results */
+const areaScore = i => Math.round((answers[i * PER] + answers[i * PER + 1] + answers[i * PER + 2]) / 9 * 100);
+
+function verdictFor(min) {
+  if (min >= 67) return ['Ready to leave the pilot.', 'No area is weak enough to sink it. Keep an eye on the lowest score as usage grows.'];
+  if (min >= 44) return ['Close, with gaps to fix first.', 'One or two areas are holding it back. Fix those before you scale.'];
+  if (min >= 22) return ['Still a pilot.', 'It can work in a demo. At production volume, the weakest areas are where it will fail.'];
+  return ['Not ready yet.', 'At least one area has no foundation. Build that before you spend more on the model.'];
+}
+
+function renderResult() {
+  const scores = AREAS.map((_, i) => areaScore(i));
+  const min = Math.min(...scores);
+  const weak = scores.indexOf(min);
+  const avg = Math.round(scores.reduce((a, b) => a + b, 0) / N);
+  const [vh, vp] = verdictFor(min);
+
+  $('verdict-h').textContent = vh;
+  $('verdict-p').textContent = 'Weakest link: ' + AREAS[weak].name + ', ' + min + ' out of 100. ' + vp;
+  $('overall').textContent = 'Average ' + avg;
+
+  const list = $('rv-list');
+  list.classList.remove('in');
+  list.textContent = '';
+  AREAS.forEach((a, i) => {
+    const row = document.createElement('div');
+    row.className = 'rv-row' + (i === weak ? ' weak' : '');
+    const label = document.createElement('span');
+    label.className = 'rv-label';
+    label.textContent = a.name;
+    const meter = document.createElement('div');
+    meter.className = 'meter';
+    meter.setAttribute('role', 'img');
+    meter.setAttribute('aria-label', a.name + ' ' + scores[i] + ' out of 100');
+    const fill = document.createElement('i');
+    fill.style.setProperty('--v', (Math.round(scores[i] / 10) * 10) + '%');
+    fill.style.setProperty('--dl', (i * 0.09) + 's');
+    meter.appendChild(fill);
+    const val = document.createElement('span');
+    val.className = 'rv-val';
+    val.textContent = scores[i];
+    row.append(label, meter, val);
+    list.appendChild(row);
+  });
+
+  $('start-h').textContent = min >= 67 ? 'Watch these as usage grows' : 'Where to start';
+  const gaps = $('gaps');
+  gaps.textContent = '';
+  scores.map((s, i) => [s, i]).sort((a, b) => a[0] - b[0] || a[1] - b[1]).slice(0, 2).forEach(([s, i]) => {
+    const a = AREAS[i];
+    const card = document.createElement('div');
+    card.className = 'gap-card';
+    const h = document.createElement('h3');
+    h.textContent = a.name;
+    const sc = document.createElement('span');
+    sc.textContent = s + ' out of 100';
+    h.appendChild(sc);
+    const p = document.createElement('p');
+    p.textContent = a.act;
+    card.append(h, p);
+    if (a.link) {
+      const l = document.createElement('a');
+      l.href = a.link.href;
+      l.textContent = a.link.text;
+      card.appendChild(l);
+    }
+    gaps.appendChild(card);
+  });
+
+  history.replaceState(null, '', location.pathname + '#r=' + answers.join(''));
+  show('result');
+  $('verdict-h').focus({ preventScroll: true });
+  requestAnimationFrame(() => requestAnimationFrame(() => list.classList.add('in')));
+}
+
+/* events */
+$('start').addEventListener('click', () => { step = 0; renderStep(); });
+$('back').addEventListener('click', () => { if (step > 0) { step--; renderStep(); } });
+$('next').addEventListener('click', () => {
+  if (step < N - 1) { step++; renderStep(); } else { renderResult(); }
+});
+$('again').addEventListener('click', () => {
+  answers = Array(N * PER).fill(null);
+  step = 0;
+  history.replaceState(null, '', location.pathname);
+  show('intro');
+});
+$('print').addEventListener('click', () => window.print());
+$('copy').addEventListener('click', async () => {
+  const label = $('copy').querySelector('span');
+  try { await navigator.clipboard.writeText(location.href); label.textContent = 'Link copied'; }
+  catch { label.textContent = 'Copy the address bar'; }
+  setTimeout(() => { label.textContent = 'Copy link to this result'; }, 1800);
+});
+
+/* open a shared result straight from the link */
+const shared = location.hash.match(/^#r=([0-3]{18})$/);
+if (shared) {
+  answers = shared[1].split('').map(Number);
+  renderResult();
+}
+</script>
+</body>
+</html>
