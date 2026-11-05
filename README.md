@@ -8,8 +8,9 @@ Source for my personal site — tools and working notes on getting AI from propo
 
 | Page | |
 |---|---|
-| `/` | Work, capabilities, tools index and contact |
-| `/about/` | Service record, from mechanical rooms to AI strategy |
+| `/` | Positioning, work, capabilities, tools index and contact |
+| `/review/` | Production readiness review — 18 statements across six areas; the verdict follows the weakest area. Results are shareable by URL hash |
+| `/about/` | Service record and origin story, from mechanical rooms to AI strategy |
 | `/cost/` | Inference at scale calculator — what an LLM workload costs at production volume |
 | `/ops/` | Operations at scale calculator — what a Make scenario actually meters |
 | `/score/` | Use-case scoring matrix — ranks AI ideas by what survives delivery, not by the pitch |
@@ -33,6 +34,7 @@ The tools run entirely client-side. Nothing is sent anywhere, and there's no bac
 ├── about/index.html
 ├── cost/index.html
 ├── ops/index.html
+├── review/index.html
 ├── score/index.html
 └── line/index.html
 ```

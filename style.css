@@ -322,3 +322,115 @@ input[type=text]:focus{border-color:var(--gas);outline:none}
   .job,.tool,.cred,.gauge{break-inside:avoid}
   a{text-decoration:none}
 }
+
+/* ============================================
+   Redesign, November 2026
+   Quieter motion, restrained radii, one memorable element:
+   the segmented readiness meter.
+   ============================================ */
+[hidden]{display:none!important}
+:root{--seg:repeating-linear-gradient(90deg,#000 0 calc(10% - 3px),transparent calc(10% - 3px) 10%)}
+
+/* reveals fade in place instead of sliding up */
+.rise{transform:none;transition:opacity .9s var(--ease);transition-delay:var(--d,0ms)}
+
+/* radii follow hierarchy: controls 6, cards 8, the hero instrument 14 */
+.panel,.tool,.gauge,.cred,.step,.gap-card{border-radius:8px}
+.readout{border-radius:6px}
+.btn,.tier,input[type=number],input[type=text],select{border-radius:6px}
+.chip{border-radius:4px}
+.plate{border-radius:6px}
+
+nav a.cta{color:var(--gas);font-weight:600}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:84px 0 96px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:64px;align-items:center}
+.hero h1{font-size:clamp(2.7rem,6.6vw,5.2rem)}
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr;gap:48px}.hero{padding:56px 0 72px}}
+
+/* ---------- segmented meter ---------- */
+.meter{position:relative;height:14px}
+.meter::before,.meter>i{content:"";position:absolute;inset:0;-webkit-mask:var(--seg);mask:var(--seg)}
+.meter::before{background:var(--line)}
+.meter>i{background:var(--tx);clip-path:inset(0 100% 0 0);transition:clip-path 1.1s steps(10,end) var(--dl,0s)}
+.in .meter>i{clip-path:inset(0 calc(100% - var(--v,0%)) 0 0)}
+.rv-row.weak .meter>i{background:var(--gas)}
+
+.rv-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.rv-head b{font-weight:800;letter-spacing:-.02em;font-size:1.02rem}
+.rv-head span{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--tx2)}
+.rv-row{display:grid;grid-template-columns:136px minmax(0,1fr) 34px;gap:14px;align-items:center;padding:8px 0}
+.rv-label{font-size:.92rem}
+.rv-val{font-family:'IBM Plex Mono',monospace;font-size:.82rem;text-align:right;color:var(--tx2)}
+.rv-row.weak .rv-label,.rv-row.weak .rv-val{color:var(--gas)}
+@media (max-width:420px){.rv-row{grid-template-columns:104px minmax(0,1fr) 30px;gap:10px}.rv-label{font-size:.85rem}}
+
+.rvpanel{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 28px 24px;box-shadow:0 34px 64px -38px rgba(0,0,0,.75);transition:border-color .35s,transform .45s var(--ease)}
+.rvpanel:hover{border-color:var(--gas);transform:translateY(-3px)}
+.rvfoot{margin:14px 0 0;padding-top:14px;border-top:1px solid var(--line);color:var(--tx2);font-size:.93rem}
+.rvfoot b{color:var(--tx)}
+.rvlink{display:inline-block;margin-top:12px;font-weight:600;font-size:.92rem;border-bottom:2px solid var(--gas)}
+
+/* ---------- feature band ---------- */
+.band{background:var(--bg2)}
+.review-band{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.review-band h2{font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.08;letter-spacing:-.04em;margin-bottom:18px;max-width:16ch}
+@media (max-width:860px){.review-band{grid-template-columns:1fr;gap:32px}}
+.areas h2{font-size:1.15rem;margin:0 0 12px}
+.areas ul{list-style:none;margin:0;padding:0}
+.areas li{padding:14px 0;border-top:1px solid var(--line);display:grid;gap:2px}
+.areas li:last-child{border-bottom:1px solid var(--line)}
+.areas li b{font-weight:700}
+.areas li span{color:var(--tx2);font-size:.93rem}
+
+/* ---------- tools grid ---------- */
+.tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tools-grid .tool{margin:0!important;display:flex;flex-direction:column}
+.tools-grid .tool.wide{grid-column:1/-1}
+.tools-grid .gap{margin-top:auto}
+@media (max-width:900px){.tools-grid{grid-template-columns:1fr}}
+
+/* ---------- about: the plate as origin story ---------- */
+.about-hero{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:56px;align-items:center}
+.about-hero h1{max-width:none}
+@media (max-width:860px){.about-hero{grid-template-columns:1fr;gap:36px}}
+
+/* ---------- readiness review ---------- */
+.step-count{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--tx2);margin:0 0 12px}
+.pips{display:flex;gap:6px;margin:0 0 24px}
+.pips i{width:34px;height:4px;background:var(--line);border-radius:2px}
+.pips i.done{background:var(--tx2)}
+.pips i.now{background:var(--gas)}
+.h1-sm{font-size:clamp(2rem,4.8vw,3.1rem);max-width:none;margin-bottom:14px}
+.h1-sm:focus{outline:none}
+.qs{margin-top:30px}
+fieldset.q{border:0;padding:0;margin:0 0 30px;min-width:0}
+fieldset.q legend{font-size:1.06rem;font-weight:600;line-height:1.4;max-width:60ch;margin-bottom:12px;padding:0}
+.opts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;max-width:580px}
+.opt{position:relative;cursor:pointer}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.opt span{display:block;text-align:center;padding:10px 6px;border:1px solid var(--line);border-radius:6px;font-size:.88rem;font-weight:600;transition:background .2s,border-color .2s,color .2s}
+.opt:hover span{border-color:var(--gas)}
+.opt input:checked + span{background:var(--gas);color:#0C1412;border-color:var(--gas)}
+.opt input:focus-visible + span{outline:2px solid var(--gas);outline-offset:3px}
+@media (max-width:520px){.opts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.rv-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px 26px;margin-top:28px;max-width:640px}
+.gaps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:14px}
+.gap-card{border:1px solid var(--line);background:var(--surface);padding:20px 22px}
+.gap-card h3{margin:0 0 8px;font-size:1.1rem;font-weight:800;letter-spacing:-.02em;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.gap-card h3 span{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:.74rem;color:var(--gas);white-space:nowrap}
+.gap-card p{margin:0 0 12px;color:var(--tx2);font-size:.95rem}
+.gap-card a{font-weight:600;font-size:.92rem;border-bottom:2px solid var(--gas);text-decoration:none}
+
+@media (prefers-reduced-motion:reduce){
+  .meter>i{clip-path:inset(0 calc(100% - var(--v,0%)) 0 0)!important}
+}
+
+@media print{
+  #intro,#quiz,#notes{display:none!important}
+  .rvpanel{box-shadow:none}
+  .meter::before{background:#ddd}
+  .meter>i{clip-path:inset(0 calc(100% - var(--v,0%)) 0 0)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}

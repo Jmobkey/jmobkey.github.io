@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Josh Murphy — AI strategy and delivery</title>
-<meta name="description" content="AI strategy and delivery lead. Shipped AI tooling for HVAC-R distribution across North America. Tools and working notes on getting AI from proposal to production.">
+<meta name="description" content="AI strategy and delivery lead. I build the tools and run the reviews that get AI from pilot to production, in any industry.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,35 +15,17 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Josh Murphy">
 <meta property="og:title" content="Josh Murphy — AI strategy and delivery">
-<meta property="og:description" content="AI strategy and delivery lead. Shipped AI tooling for HVAC-R distribution across North America. Tools and working notes on getting AI from proposal to production.">
+<meta property="og:description" content="AI strategy and delivery lead. I build the tools and run the reviews that get AI from pilot to production, in any industry.">
 <meta property="og:url" content="https://jmobkey.github.io/">
 <meta property="og:image" content="https://jmobkey.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Josh Murphy: most AI projects don't fail on the model.">
 <meta name="twitter:card" content="summary_large_image">
-<noscript><style>.rise{opacity:1;transform:none}h1 .ln>span{transform:none}.gap-bar{width:var(--w)}.dial i{transform:scaleX(1)}</style></noscript>
+<noscript><style>.rise{opacity:1}h1 .ln>span{transform:none}.gap-bar{width:var(--w)}.dial i{transform:scaleX(1)}.meter>i{clip-path:inset(0 calc(100% - var(--v,0%)) 0 0)}</style></noscript>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Josh Murphy","url":"https://jmobkey.github.io/","jobTitle":"Lead, AI Strategy & Delivery","address":{"@type":"PostalAddress","addressLocality":"Edmonton","addressRegion":"AB","addressCountry":"CA"},"sameAs":["https://www.linkedin.com/in/josh-murphy-96575b184","https://github.com/jmobkey"]}
 </script>
-<style>
-.hero{position:relative;padding:92px 0 96px;overflow:hidden;border-top:0}
-.hero .wrap{display:grid;grid-template-columns:1fr 366px;gap:60px;align-items:center;position:relative;z-index:2}
-.hero-cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-#schem{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.45}
-#schem path,#schem circle,#schem rect,#schem line{
-  stroke:var(--tx2);fill:none;stroke-width:1.15;
-  stroke-dasharray:var(--len,1400);stroke-dashoffset:var(--len,1400);
-  animation:draw 2.6s var(--ease) forwards;animation-delay:var(--dd,0s);
-}
-#schem .hot{stroke:var(--gas);stroke-width:1.6}
-#schem .fill{fill:var(--bg)}
-@keyframes draw{to{stroke-dashoffset:0}}
-.pulse{fill:var(--gas);stroke:none!important;stroke-dasharray:none!important;stroke-dashoffset:0!important;opacity:0;animation:pulseIn .5s ease 2.4s forwards,glow 2.6s ease-in-out 2.9s infinite!important}
-@keyframes pulseIn{to{opacity:1}}
-@keyframes glow{0%,100%{opacity:.3}50%{opacity:1}}
-@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:46px}#schem{opacity:.18}}
-</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -54,9 +36,9 @@
     <a class="mark" href="/">Josh Murphy <em>/ AI strategy &amp; delivery</em></a>
     <div class="right">
       <nav aria-label="Primary">
+        <a class="cta" href="/review/">Review</a>
         <a class="hide-s" href="#work">Work</a>
-        <a class="hide-m" href="#how">Capabilities</a>
-        <a href="#tools">Tools</a>
+        <a class="hide-s" href="#tools">Tools</a>
         <a href="/about/">About</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -68,31 +50,7 @@
 <main id="main">
 
   <div class="hero">
-    <svg id="schem" viewBox="0 0 1400 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <path class="hot" style="--len:760;--dd:.2s" d="M-20 470 H300 q22 0 22-22 V300"/>
-      <path style="--len:200;--dd:.9s" d="M300 452 l-20-14 v28 z M344 452 l20-14 v28 z"/>
-      <line style="--len:40;--dd:1s" x1="322" y1="424" x2="322" y2="440"/>
-      <path class="hot" style="--len:420;--dd:1.05s" d="M322 300 V210 q0-22 22-22 H520"/>
-      <rect class="fill" style="--len:300;--dd:1.4s" x="520" y="158" width="86" height="60" rx="3"/>
-      <circle style="--len:120;--dd:1.6s" cx="563" cy="188" r="17"/>
-      <line style="--len:30;--dd:1.75s" x1="563" y1="188" x2="574" y2="177"/>
-      <path class="hot" style="--len:640;--dd:1.7s" d="M606 188 H860 q22 0 22 22 V400"/>
-      <path style="--len:180;--dd:2s" d="M700 188 V120 M780 188 V120"/>
-      <circle style="--len:80;--dd:2.15s" cx="700" cy="112" r="9"/>
-      <circle style="--len:80;--dd:2.15s" cx="780" cy="112" r="9"/>
-      <circle style="--len:260;--dd:2.1s" cx="882" cy="440" r="40"/>
-      <circle style="--len:70;--dd:2.3s" cx="882" cy="440" r="4"/>
-      <path style="--len:60;--dd:2.4s" d="M882 440 L906 418"/>
-      <rect class="fill" style="--len:900;--dd:2.2s" x="1040" y="300" width="250" height="200" rx="4"/>
-      <line style="--len:250;--dd:2.5s" x1="1040" y1="360" x2="1290" y2="360"/>
-      <path style="--len:400;--dd:2.6s" d="M1075 400 h180 M1075 430 h180 M1075 460 h180"/>
-      <path class="hot" style="--len:180;--dd:2.35s" d="M882 400 V330 q0-30 30-30 H1040"/>
-      <circle class="pulse" cx="322" cy="452" r="4"/>
-      <circle class="pulse" cx="563" cy="188" r="4"/>
-      <circle class="pulse" cx="882" cy="440" r="4"/>
-    </svg>
-
-    <div class="wrap">
+    <div class="wrap hero-grid">
       <div>
         <h1>
           <span class="ln"><span style="--d:.15s">Most AI projects</span></span>
@@ -100,51 +58,64 @@
           <span class="ln"><span style="--d:.39s">the model.</span></span>
         </h1>
         <p class="lede first rise" style="--d:.6s">They fail on data access, process reality, and who owns the thing in a year.</p>
-        <p class="lede rise" style="--d:.72s">I lead AI strategy and delivery across North America for an HVAC-R distributor, where I've shipped customer-facing AI tooling and an internal platform used nationally. Before that I was a gasfitter.</p>
-        <div class="hero-cta rise" style="--d:.84s">
-          <a class="btn solid" href="#work"><span>See the work</span></a>
-          <a class="btn" href="#tools"><span>Use the tools</span></a>
+        <p class="lede rise" style="--d:.72s">I lead AI strategy and delivery. I've shipped customer-facing AI tooling and an internal platform used nationally, and I build the tools that catch these failures before they get expensive. Before that, I was a gasfitter.</p>
+        <div class="cta-row rise" style="--d:.84s">
+          <a class="btn solid" href="/review/"><span>Run the review</span></a>
+          <a class="btn" href="#work"><span>See the work</span></a>
         </div>
       </div>
 
-      <div class="plate-mount rise" style="--d:.5s">
-        <div class="plate" id="plate">
-          <div class="screw tl"></div><div class="screw tr"></div><div class="screw bl"></div><div class="screw br"></div>
-          <div class="plate-inner">
-            <div class="plate-top">
-              <div class="plate-title">RATING PLATE<span>PLAQUE SIGNALÉTIQUE</span></div>
-              <div class="plate-badge">RED<br>SEAL<br>B</div>
-            </div>
-            <table>
-              <tr><td class="k">NAME</td><td class="v">MURPHY, JOSH</td></tr>
-              <tr><td class="k">ROLE</td><td class="v">Lead, AI Strategy &amp; Delivery</td></tr>
-              <tr><td class="k">TERRITORY</td><td class="v">Canada &amp; United States</td></tr>
-              <tr><td class="k">SECTOR</td><td class="v">HVAC-R distribution<small>80+ branches</small></td></tr>
-              <tr><td class="k">DEGREE</td><td class="v">BSc Computer Science<small>Conferring Dec 2026</small></td></tr>
-              <tr><td class="k">CERT.</td><td class="v">Journeyman Gasfitter, Class B<small>NAIT · Red Seal endorsed</small></td></tr>
-              <tr><td class="k">LOCATION</td><td class="v">Edmonton, Alberta</td></tr>
-            </table>
-            <div class="plate-warn">CAUTION — WILL NOT DEPLOY A MODEL THAT IS NEARLY RIGHT</div>
-            <div class="plate-ser"><span>IN SERVICE SINCE 2019</span><span>NO. JM-780-YEG</span></div>
-          </div>
+      <a class="rvpanel rise" style="--d:.9s" href="/review/" aria-label="Sample result from the production readiness review. Open the review.">
+        <div class="rv-head"><b>Production readiness</b><span>Sample result</span></div>
+        <div class="rv">
+          <div class="rv-row"><span class="rv-label">Data access</span><div class="meter"><i style="--v:90%;--dl:1.1s"></i></div><span class="rv-val">89</span></div>
+          <div class="rv-row"><span class="rv-label">Process fit</span><div class="meter"><i style="--v:60%;--dl:1.25s"></i></div><span class="rv-val">56</span></div>
+          <div class="rv-row weak"><span class="rv-label">Ownership</span><div class="meter"><i style="--v:30%;--dl:1.4s"></i></div><span class="rv-val">33</span></div>
+          <div class="rv-row"><span class="rv-label">Decision design</span><div class="meter"><i style="--v:80%;--dl:1.55s"></i></div><span class="rv-val">78</span></div>
+          <div class="rv-row"><span class="rv-label">Economics</span><div class="meter"><i style="--v:60%;--dl:1.7s"></i></div><span class="rv-val">56</span></div>
+          <div class="rv-row"><span class="rv-label">Governance</span><div class="meter"><i style="--v:40%;--dl:1.85s"></i></div><span class="rv-val">44</span></div>
         </div>
-      </div>
+        <p class="rvfoot"><b>Still a pilot.</b> Strong data and design, but nobody owns it.</p>
+        <span class="rvlink">Run it on your project</span>
+      </a>
     </div>
   </div>
 
+  <section id="review" class="band">
+    <div class="wrap review-band">
+      <div>
+        <h2 class="rise">Check your project before you scale it.</h2>
+        <p class="lede rise" style="--d:.08s">The production readiness review is eighteen statements across the six areas where AI projects stall after a good pilot. The verdict follows your weakest link, not your average, and it tells you where to start.</p>
+        <p class="lede rise" style="--d:.14s">It works for any industry, takes about five minutes, and runs in your browser.</p>
+        <div class="cta-row rise" style="--d:.2s">
+          <a class="btn solid" href="/review/"><span>Run the review</span></a>
+        </div>
+      </div>
+      <div class="areas rise" style="--d:.12s">
+        <ul>
+          <li><b>Data access</b><span>Can it reach the data it needs, today, in production?</span></li>
+          <li><b>Process fit</b><span>Does it match how the work really happens?</span></li>
+          <li><b>Ownership</b><span>Who owns it in a year?</span></li>
+          <li><b>Decision design</b><span>Is the line between model, person and rule drawn?</span></li>
+          <li><b>Economics</b><span>Do you know what it costs at production volume?</span></li>
+          <li><b>Governance</b><span>Would you notice when it is wrong, and what happens then?</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section id="work">
     <div class="wrap">
-      <p class="eyebrow rise">01 — SHIPPED</p>
-      <h2 class="rise" style="--d:.05s">Work</h2>
+      <h2 class="rise">Work</h2>
       <p class="h2note rise" style="--d:.1s">Systems in production, not prototypes. Detail is kept to what the design reasoning requires; the specifics are a conversation.</p>
 
       <div class="job rise">
         <div class="job-meta"><b>2026 —</b>Product<br>Phase I shipped</div>
         <div>
           <h3>Smart Tools</h3>
-          <p>A suite of AI and logic-driven utilities that let contractors identify and source the right part without phoning a branch. Phase I shipped four: an electric motor cross-referencer that reads a data plate photo and returns compatible replacements, a V-belt sizing calculator, a contactor finder, and a refrigeration oil cross-referencer.</p>
+          <p>A suite of AI and logic-driven utilities that let trade customers identify and source the right part without phoning a branch. Phase I shipped four, including a cross-referencer that reads a photo of an equipment data plate and returns compatible replacements.</p>
           <p>The design problem throughout is that a near-match is worse than no answer, because someone will fit it. Substitution logic stays deterministic and rule-bound; the model handles extraction and disambiguation, never the compatibility call.</p>
-          <p class="role"><b>My part:</b> architected and implemented the functional logic, calculation engines and AI integrations. Ran structured beta testing with staff and volunteer contractors, then worked with the web team to port it into production.</p>
+          <p class="role"><b>My part:</b> architected and implemented the functional logic, calculation engines and AI integrations. Ran structured beta testing with staff and volunteer customers, then worked with the web team to port it into production.</p>
           <div class="tags"><span>vision / OCR</span><span>entity resolution</span><span>deterministic fallback</span><span>public-facing</span></div>
         </div>
       </div>
@@ -174,8 +145,7 @@
 
   <section id="how">
     <div class="wrap">
-      <p class="eyebrow rise">02 — WHAT I ACTUALLY DO</p>
-      <h2 class="rise" style="--d:.05s">Capabilities</h2>
+      <h2 class="rise">Capabilities</h2>
       <p class="h2note rise" style="--d:.1s">Where the time goes.</p>
       <div class="gauges">
         <div class="gauge rise"><b>Applied AI architecture</b><span>Retrieval, extraction, agentic workflows, and the deterministic guardrails around them</span><div class="dial"><i style="--gd:.1s"></i></div></div>
@@ -183,74 +153,75 @@
         <div class="gauge rise" style="--d:.12s"><b>Workflow automation</b><span>Make, end to end. Idempotency, retries, dead letters, and knowing when to leave the platform</span><div class="dial"><i style="--gd:.3s"></i></div></div>
         <div class="gauge rise" style="--d:.18s"><b>Unit economics</b><span>What a workload costs at production volume, before it gets signed off</span><div class="dial"><i style="--gd:.4s"></i></div></div>
         <div class="gauge rise" style="--d:.24s"><b>Governance</b><span>Ownership, audit trails, and what happens when the model is wrong</span><div class="dial"><i style="--gd:.5s"></i></div></div>
-        <div class="gauge rise" style="--d:.3s"><b>Domain: HVAC-R</b><span>Six years in the field, Red Seal gasfitter, two years at the counter</span><div class="dial"><i style="--gd:.6s"></i></div></div>
+        <div class="gauge rise" style="--d:.3s"><b>Field experience</b><span>Six years as a service technician and Red Seal gasfitter, two at the counter. Safety-critical work teaches you where an answer can't be nearly right</span><div class="dial"><i style="--gd:.6s"></i></div></div>
       </div>
     </div>
   </section>
 
   <section id="tools">
     <div class="wrap">
-      <p class="eyebrow rise">03 — OPEN</p>
-      <h2 class="rise" style="--d:.05s">Tools</h2>
+      <h2 class="rise">Tools</h2>
       <p class="h2note rise" style="--d:.1s">Free, running entirely in your browser, collecting nothing. Each one says plainly what it doesn't account for.</p>
 
-      <a class="tool rise" href="/cost/">
-        <div class="tool-body">
-          <h3>Inference at scale calculator</h3>
-          <p>What a workload costs once it leaves the pilot. Models the multipliers that don't reach the business case: retrieved context on every call, conversation carried across turns, retries, evals, and non-production traffic.</p>
-        </div>
-        <div class="gap">
-          <div class="gap-row"><div class="gap-bar est" style="--w:11.8%"></div><div class="gap-lab" data-count="1368" data-pre="$">$0 <b>as estimated</b></div></div>
-          <div class="gap-row"><div class="gap-bar bill" style="--w:100%"></div></div>
-          <div class="gap-lab" data-count="11635" data-pre="$">$0 <b>as billed</b></div>
-          <p class="gap-note">Same workload, same month. Only the first number tends to reach the paper that gets signed.</p>
-        </div>
-      </a>
+      <div class="tools-grid">
+        <a class="tool rise" href="/cost/">
+          <div class="tool-body">
+            <h3>Inference at scale calculator</h3>
+            <p>What a workload costs once it leaves the pilot. Models the multipliers that don't reach the business case: retrieved context on every call, conversation carried across turns, retries, evals, and non-production traffic.</p>
+          </div>
+          <div class="gap">
+            <div class="gap-row"><div class="gap-bar est" style="--w:11.8%"></div><div class="gap-lab" data-count="1368" data-pre="$">$0 <b>as estimated</b></div></div>
+            <div class="gap-row"><div class="gap-bar bill" style="--w:100%"></div></div>
+            <div class="gap-lab" data-count="11635" data-pre="$">$0 <b>as billed</b></div>
+            <p class="gap-note">Same workload, same month. Only the first number tends to reach the paper that gets signed.</p>
+          </div>
+        </a>
 
-      <a class="tool rise" href="/ops/">
-        <div class="tool-body">
-          <h3>Operations at scale calculator</h3>
-          <p>Make bills every module execution, not every scenario run. An iterator over fifty records costs fifty times everything downstream of it, and a polling trigger bills you for looking even when there's nothing there.</p>
-        </div>
-        <div class="gap">
-          <div class="gap-row"><div class="gap-bar est" style="--w:24%"></div><div class="gap-lab" data-count="36000">0 <b>modules on the canvas</b></div></div>
-          <div class="gap-row"><div class="gap-bar bill" style="--w:100%"></div></div>
-          <div class="gap-lab" data-count="151000">0 <b>operations metered</b></div>
-          <p class="gap-note">A twelve-module scenario on a fifteen-minute schedule, with one loop in it.</p>
-        </div>
-      </a>
+        <a class="tool rise" href="/ops/">
+          <div class="tool-body">
+            <h3>Operations at scale calculator</h3>
+            <p>Make bills every module execution, not every scenario run. An iterator over fifty records costs fifty times everything downstream of it, and a polling trigger bills you for looking even when there's nothing there.</p>
+          </div>
+          <div class="gap">
+            <div class="gap-row"><div class="gap-bar est" style="--w:24%"></div><div class="gap-lab" data-count="36000">0 <b>modules on the canvas</b></div></div>
+            <div class="gap-row"><div class="gap-bar bill" style="--w:100%"></div></div>
+            <div class="gap-lab" data-count="151000">0 <b>operations metered</b></div>
+            <p class="gap-note">A twelve-module scenario on a fifteen-minute schedule, with one loop in it.</p>
+          </div>
+        </a>
 
-      <a class="tool rise" href="/score/">
-        <div class="tool-body">
-          <h3>Use-case scoring matrix</h3>
-          <p>Rank AI ideas by what will survive delivery rather than by how good they sound in the pitch. Scores value against data readiness, ownership, risk and effort, and flags the ideas that need their foundations fixed before anyone builds anything.</p>
-        </div>
-        <div class="gap">
-          <div class="gap-row"><div class="gap-bar est" style="--w:100%"></div><div class="gap-lab" data-count="100">0 <b>as pitched</b></div></div>
-          <div class="gap-row"><div class="gap-bar bill" style="--w:17.5%"></div></div>
-          <div class="gap-lab" data-count="18">0 <b>as scored</b></div>
-          <p class="gap-note">The customer-facing assistant in the sample set: joint top as pitched, third once data and ownership are counted.</p>
-        </div>
-      </a>
+        <a class="tool rise" href="/score/">
+          <div class="tool-body">
+            <h3>Use-case scoring matrix</h3>
+            <p>Rank AI ideas by what will survive delivery rather than by how good they sound in the pitch. Scores value against data readiness, ownership, risk and effort, and flags the ideas that need their foundations fixed first.</p>
+          </div>
+          <div class="gap">
+            <div class="gap-row"><div class="gap-bar est" style="--w:100%"></div><div class="gap-lab" data-count="100">0 <b>as pitched</b></div></div>
+            <div class="gap-row"><div class="gap-bar bill" style="--w:17.5%"></div></div>
+            <div class="gap-lab" data-count="18">0 <b>as scored</b></div>
+            <p class="gap-note">The customer-facing assistant in the sample set: joint top as pitched, third once data and ownership are counted.</p>
+          </div>
+        </a>
 
-      <a class="tool rise" href="/line/">
-        <div class="tool-body">
-          <h3>Where the line goes</h3>
-          <p>Walk a workflow step by step and decide which parts can be probabilistic and which must stay deterministic. Each step gets a call on who makes the final decision: a rule, a person or the model, with the reasoning shown.</p>
-        </div>
-        <div class="gap">
-          <div class="stack" style="margin-bottom:10px"><div class="s-main" style="width:50%"></div><div class="s-loop" style="width:33.3%"></div><div class="s-empty" style="width:16.7%"></div></div>
-          <div class="key" style="margin:0"><span><i class="s-main"></i>Rule decides <b>3</b></span><span><i class="s-loop"></i>Person decides <b>2</b></span><span><i class="s-empty"></i>Model decides <b>1</b></span></div>
-          <p class="gap-note">A six-step warranty claim process. The model does work in five of the steps and makes the final call in one.</p>
-        </div>
-      </a>
+        <a class="tool rise" href="/line/">
+          <div class="tool-body">
+            <h3>Where the line goes</h3>
+            <p>Walk a workflow step by step and decide which parts can be probabilistic and which must stay deterministic. Each step gets a call on who makes the final decision: a rule, a person or the model.</p>
+          </div>
+          <div class="gap">
+            <div class="stack" style="margin-bottom:10px"><div class="s-main" style="width:50%"></div><div class="s-loop" style="width:33.3%"></div><div class="s-empty" style="width:16.7%"></div></div>
+            <div class="key" style="margin:0"><span><i class="s-main"></i>Rule decides <b>3</b></span><span><i class="s-loop"></i>Person decides <b>2</b></span><span><i class="s-empty"></i>Model decides <b>1</b></span></div>
+            <p class="gap-note">A six-step warranty claim process. The model does work in five of the steps and makes the final call in one.</p>
+          </div>
+        </a>
 
-      <a class="tool rise" href="https://github.com/jmobkey/automation-architecture">
-        <div class="tool-body">
-          <h3>Automation architecture</h3>
-          <p>Working standards for automation that gets depended on: idempotency, retry semantics, dead lettering, and alerting on silence rather than only on failure. Four patterns with the failure mode of each, and an honest account of when to move off a no-code platform — including the bad reasons people usually give.</p>
-        </div>
-      </a>
+        <a class="tool wide rise" href="https://github.com/jmobkey/automation-architecture">
+          <div class="tool-body">
+            <h3>Automation architecture</h3>
+            <p>Working standards for automation that gets depended on: idempotency, retry semantics, dead lettering, and alerting on silence rather than only on failure. Four patterns with the failure mode of each, and an honest account of when to move off a no-code platform, including the bad reasons people usually give.</p>
+          </div>
+        </a>
+      </div>
 
       <p class="soon rise">A gas code evaluation set and a field-conditions reference architecture are in progress.</p>
     </div>
@@ -258,18 +229,16 @@
 
   <section class="story">
     <div class="wrap narrow">
-      <p class="eyebrow rise">04 — BACKGROUND</p>
-      <h2 class="rise" style="--d:.05s">I learned this trade in mechanical rooms.</h2>
+      <h2 class="rise">I learned this trade in mechanical rooms.</h2>
       <p class="rise" style="--d:.1s">Six years as an HVAC-R service technician, a Red Seal gasfitter ticket out of NAIT, then a stretch behind the counter quoting jobs for contractors. I'm finishing a BSc in Computer Science alongside the work, conferring at the end of 2026.</p>
       <p class="punch rise" style="--d:.18s">What the field gives you is a low tolerance for answers that are nearly right. Knowing which parts of a system can be probabilistic and which have to stay deterministic is most of the design work, and knowing where that line sits comes from having been the person holding the wrong part.</p>
-      <p class="rise" style="--d:.26s"><a href="/about/">The longer version &rarr;</a></p>
+      <p class="rise" style="--d:.26s"><a href="/about/">The longer version</a></p>
     </div>
   </section>
 
   <section id="contact">
     <div class="wrap narrow">
-      <p class="eyebrow rise">05 — CONTACT</p>
-      <h2 class="rise" style="--d:.05s">Talk to me.</h2>
+      <h2 class="rise">Talk to me.</h2>
       <p class="h2note rise" style="--d:.1s">About AI strategy, architecture, or getting something from pilot to production: roles, advisory work, or a good argument. Email is quickest.</p>
       <div class="cta-row rise" style="--d:.15s">
         <a class="btn solid" href="mailto:josh_p_murphy@hotmail.ca"><span>Email me</span></a>
