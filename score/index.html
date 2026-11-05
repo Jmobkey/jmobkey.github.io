@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Use-case scoring — ranked by what survives delivery</title>
+<meta name="description" content="Score AI ideas on value, data readiness, ownership, risk and effort. The order that comes out is rarely the one the pitch implied.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0C1412">
+<link rel="canonical" href="https://jmobkey.github.io/score/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Josh Murphy">
+<meta property="og:title" content="Use-case scoring — ranked by what survives delivery">
+<meta property="og:description" content="Score AI ideas on value, data readiness, ownership, risk and effort. The order that comes out is rarely the one the pitch implied.">
+<meta property="og:url" content="https://jmobkey.github.io/score/">
+<meta property="og:image" content="https://jmobkey.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Josh Murphy: most AI projects don't fail on the model.">
+<meta name="twitter:card" content="summary_large_image">
+<noscript><style>.rise{opacity:1;transform:none}h1 .ln>span{transform:none}.gap-bar{width:var(--w)}.dial i{transform:scaleX(1)}</style></noscript>
+<style>@media (min-width:900px){.readout{position:sticky;top:70px;z-index:5}}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="prog"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="mark" href="/">Josh Murphy <em>/ AI strategy &amp; delivery</em></a>
+    <div class="right">
+      <nav aria-label="Primary">
+        <a class="hide-s" href="/#work">Work</a>
+        <a href="/#tools">Tools</a>
+        <a href="/about/">About</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <button id="theme" aria-label="Toggle light and dark theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap narrow">
+
+  <section class="plain">
+    <p class="eyebrow">TOOL — PRIORITISATION</p>
+    <h1><span class="ln"><span style="--d:.1s">Rank by survival,</span></span><span class="ln"><span style="--d:.22s">not by pitch.</span></span></h1>
+    <p class="lede rise" style="--d:.4s">An idea scores well in a pitch because its value is easy to describe. It scores badly in delivery when nobody owns the process, the data isn't ready, or a wrong answer is expensive. Score the ideas below and watch the order change.</p>
+  </section>
+
+  <div class="readout">
+    <div class="figs">
+      <div class="fig"><i>AS PITCHED</i><b id="pitched">—</b></div>
+      <div class="fig hot"><i>AS SCORED</i><b id="scored">—</b></div>
+      <div class="fig dist"><i>DISTANCE</i><b id="dist">—</b></div>
+    </div>
+    <div class="rfoot"><span>Average across the ideas below, out of 100.</span><span>Ideas that changed place <b id="moved">—</b></span></div>
+  </div>
+
+  <div class="panel">
+    <h2>Ideas</h2>
+    <p class="note">One row per candidate. Value, data and ownership score higher when better. Risk and effort score higher when worse. Rank shows the place in the pitch order, then the place once everything is counted.</p>
+    <div class="tscroll">
+      <table class="mx">
+        <thead>
+          <tr>
+            <th>IDEA</th><th>VALUE</th><th>DATA</th><th>OWNER</th><th>RISK</th><th>EFFORT</th>
+            <th>PITCHED</th><th>SCORED</th><th>RANK</th><th><span class="sr">Remove</span></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="actions" style="margin:20px 0 0">
+      <button class="btn" id="add"><span>Add an idea</span></button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>How to score</h2>
+    <p class="note">Each one runs from 1 to 5. Be harsher than feels polite.</p>
+    <div class="grid">
+      <div class="field"><label>Value <span class="hint">What changes if it works. 5 is a number someone will put in a budget. 1 is a nice-to-have.</span></label></div>
+      <div class="field"><label>Data readiness <span class="hint">5: the data exists, is reachable and is trusted. 1: it lives in someone's head or someone else's system.</span></label></div>
+      <div class="field"><label>Ownership <span class="hint">5: a named person owns the process and wants this. 1: nobody would notice if it stopped.</span></label></div>
+      <div class="field"><label>Risk <span class="hint">The cost of a wrong answer. 5: money, safety or legal exposure. 1: easily undone.</span></label></div>
+      <div class="field"><label>Effort <span class="hint">To build it and keep it working. 5: months and a team. 1: a week and a calendar reminder.</span></label></div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn solid" id="copy"><span>Copy figures</span></button>
+    <button class="btn" id="reset"><span>Reset</span></button>
+  </div>
+
+  <section>
+    <h2>What's missing</h2>
+    <div class="prose">
+      <p>Every score here is a judgement, and five judgements added together look far more precise than they are. Use this to start the argument about the order rather than to end it. The useful moment is when someone disagrees with a score, because that is usually the assumption that was about to cost something.</p>
+      <p>Two choices are built in. Readiness is the lower of data and ownership rather than their average, on the reasoning that excellent data can't make up for a missing owner, or the reverse. And risk and effort shave the score rather than divide it, so a risky idea is penalised without being wiped out. The thresholds for the call are arbitrary and meant to be argued with.</p>
+      <p>Not modelled: strategic fit, politics, dependencies between ideas, and the cost of doing nothing. The sample ideas are generic examples and don't describe any particular company.</p>
+      <p><strong>The point isn't the score. It's that the idea easiest to pitch is often the one least ready to be built.</strong></p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap narrow">
+    <div class="foot-row">
+      <div>Runs in your browser. Nothing sent, nothing stored, no analytics.</div>
+      <div><a href="/#tools">More tools</a> &nbsp;·&nbsp; <a href="/line/">Where the line goes</a></div>
+    </div>
+    <p class="disclaimer">General practice rather than professional advice. The scoring model is a simple heuristic, so treat its output as a prompt for discussion.</p>
+  </div>
+</footer>
+
+<script src="/app.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const MAX = 12;
+const KEYS = ['v', 'd', 'o', 'r', 'e'];
+const LABELS = { v: 'Value', d: 'Data readiness', o: 'Ownership', r: 'Risk', e: 'Effort' };
+const SAMPLE = [
+  { n: 'Invoice data extraction',         v: 4, d: 5, o: 5, r: 2, e: 2 },
+  { n: 'Customer-facing chat assistant',  v: 5, d: 2, o: 3, r: 4, e: 4 },
+  { n: 'Internal policy Q&A',             v: 3, d: 4, o: 4, r: 2, e: 2 },
+  { n: 'Automated price changes',         v: 5, d: 3, o: 2, r: 5, e: 3 }
+];
+let rows = SAMPLE.map(r => ({ ...r }));
+const body = $('rows');
+
+const pitch = r => r.v / 5 * 100;
+const delivery = r => 100 * (r.v / 5) * (Math.min(r.d, r.o) / 5) * (1 - (r.r - 1) / 8) * (1 - (r.e - 1) / 10);
+
+function callFor(r, s) {
+  if (Math.min(r.d, r.o) <= 2 && r.v >= 4) return ['fix', 'Fix the foundation first'];
+  if (s >= 55) return ['go', 'Start now'];
+  if (s >= 30) return ['pilot', 'Pilot with guardrails'];
+  return ['park', 'Park it'];
+}
+
+function ranks(vals) {
+  const order = vals.map((v, i) => [v, i]).sort((a, b) => b[0] - a[0] || a[1] - b[1]);
+  const out = [];
+  order.forEach((p, k) => { out[p[1]] = k + 1; });
+  return out;
+}
+
+function td(cls) {
+  const t = document.createElement('td');
+  if (cls) t.className = cls;
+  return t;
+}
+
+function scoreSelect(row, key) {
+  const sel = document.createElement('select');
+  sel.setAttribute('aria-label', LABELS[key] + ', 1 to 5');
+  for (let i = 1; i <= 5; i++) {
+    const o = document.createElement('option');
+    o.value = i;
+    o.textContent = i;
+    if (row[key] === i) o.selected = true;
+    sel.appendChild(o);
+  }
+  sel.addEventListener('change', () => { row[key] = +sel.value; update(); });
+  return sel;
+}
+
+function render() {
+  body.textContent = '';
+  rows.forEach(row => {
+    const tr = document.createElement('tr');
+
+    const tName = td('nm');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = row.n;
+    input.maxLength = 80;
+    input.placeholder = 'Describe the idea';
+    input.setAttribute('aria-label', 'Idea name');
+    input.addEventListener('input', () => { row.n = input.value; });
+    const callBox = document.createElement('div');
+    callBox.className = 'callbox';
+    tName.append(input, callBox);
+    tr.appendChild(tName);
+
+    KEYS.forEach(k => {
+      const t = td();
+      t.appendChild(scoreSelect(row, k));
+      tr.appendChild(t);
+    });
+
+    const tP = td('sc'), tS = td('sc hot'), tR = td('sc');
+    [tP, tS, tR].forEach(t => tr.appendChild(t));
+
+    const tX = td();
+    const rm = document.createElement('button');
+    rm.type = 'button';
+    rm.className = 'rm';
+    rm.textContent = '×';
+    rm.setAttribute('aria-label', 'Remove this idea');
+    rm.addEventListener('click', () => { rows.splice(rows.indexOf(row), 1); render(); });
+    tX.appendChild(rm);
+    tr.appendChild(tX);
+
+    row._el = { p: tP, s: tS, r: tR, c: callBox };
+    body.appendChild(tr);
+  });
+  update();
+}
+
+function update() {
+  const P = rows.map(pitch), S = rows.map(delivery);
+  const pr = ranks(P), sr = ranks(S);
+  let moved = 0;
+  rows.forEach((row, i) => {
+    const [cls, label] = callFor(row, S[i]);
+    row._el.p.textContent = Math.round(P[i]);
+    row._el.s.textContent = Math.round(S[i]);
+    row._el.r.textContent = pr[i] + ' → ' + sr[i];
+    row._el.c.textContent = '';
+    const chip = document.createElement('span');
+    chip.className = 'chip ' + cls;
+    chip.textContent = label;
+    row._el.c.appendChild(chip);
+    if (pr[i] !== sr[i]) moved++;
+  });
+  const n = rows.length;
+  if (!n) {
+    ['pitched', 'scored', 'dist', 'moved'].forEach(id => { $(id).textContent = '—'; });
+  } else {
+    const avg = a => a.reduce((x, y) => x + y, 0) / n;
+    const ap = avg(P), as = avg(S);
+    $('pitched').textContent = Math.round(ap);
+    $('scored').textContent = Math.round(as);
+    $('dist').textContent = as > 0 ? (ap / as).toFixed(1) + '×' : '—';
+    $('moved').textContent = moved + ' of ' + n;
+  }
+  $('add').disabled = n >= MAX;
+}
+
+$('add').addEventListener('click', () => {
+  if (rows.length >= MAX) return;
+  rows.push({ n: '', v: 3, d: 3, o: 3, r: 3, e: 3 });
+  render();
+  const last = body.querySelector('tr:last-child input[type=text]');
+  if (last) last.focus();
+});
+
+$('reset').addEventListener('click', () => {
+  rows = SAMPLE.map(r => ({ ...r }));
+  render();
+});
+
+$('copy').addEventListener('click', async () => {
+  const P = rows.map(pitch), S = rows.map(delivery);
+  const pr = ranks(P), sr = ranks(S);
+  const lines = rows.map((r, i) =>
+    (r.n.trim() || 'Untitled') + ': pitched ' + Math.round(P[i]) + ', scored ' + Math.round(S[i]) +
+    ' (rank ' + pr[i] + ' to ' + sr[i] + '), ' + callFor(r, S[i])[1]);
+  lines.push('Average pitched ' + $('pitched').textContent + ', scored ' + $('scored').textContent + ', distance ' + $('dist').textContent);
+  const label = $('copy').querySelector('span');
+  try { await navigator.clipboard.writeText(lines.join('\n')); label.textContent = 'Copied'; }
+  catch { label.textContent = 'Press Ctrl+C'; }
+  setTimeout(() => { label.textContent = 'Copy figures'; }, 1600);
+});
+
+render();
+</script>
+</body>
+</html>
