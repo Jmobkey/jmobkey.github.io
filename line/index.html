@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where the line goes — rules, people or the model</title>
+<meta name="description" content="Walk a workflow step by step and decide which parts can be probabilistic and which have to stay deterministic. Each step gets a call on who makes the final decision.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0C1412">
+<link rel="canonical" href="https://jmobkey.github.io/line/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Josh Murphy">
+<meta property="og:title" content="Where the line goes — rules, people or the model">
+<meta property="og:description" content="Walk a workflow step by step and decide which parts can be probabilistic and which have to stay deterministic. Each step gets a call on who makes the final decision.">
+<meta property="og:url" content="https://jmobkey.github.io/line/">
+<meta property="og:image" content="https://jmobkey.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Josh Murphy: most AI projects don't fail on the model.">
+<meta name="twitter:card" content="summary_large_image">
+<noscript><style>.rise{opacity:1;transform:none}h1 .ln>span{transform:none}.gap-bar{width:var(--w)}.dial i{transform:scaleX(1)}</style></noscript>
+<style>@media (min-width:900px){.readout{position:sticky;top:70px;z-index:5}}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="prog"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="mark" href="/">Josh Murphy <em>/ AI strategy &amp; delivery</em></a>
+    <div class="right">
+      <nav aria-label="Primary">
+        <a class="hide-s" href="/#work">Work</a>
+        <a href="/#tools">Tools</a>
+        <a href="/about/">About</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <button id="theme" aria-label="Toggle light and dark theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap narrow">
+
+  <section class="plain">
+    <p class="eyebrow">TOOL — ARCHITECTURE</p>
+    <h1><span class="ln"><span style="--d:.1s">The model reads.</span></span><span class="ln"><span style="--d:.22s">Who decides?</span></span></h1>
+    <p class="lede rise" style="--d:.4s">Most of the design work in an AI system is deciding which parts can be probabilistic and which have to stay deterministic. List the steps in a workflow and answer five questions about each. Every step comes back with a view on whether a rule, a person or the model should make the final decision.</p>
+  </section>
+
+  <div class="readout">
+    <div class="figs">
+      <div class="fig"><i>RULE DECIDES</i><b id="f-rule">—</b></div>
+      <div class="fig hot"><i>PERSON DECIDES</i><b id="f-human">—</b></div>
+      <div class="fig dist"><i>MODEL DECIDES</i><b id="f-model">—</b></div>
+    </div>
+    <div class="rfoot"><span>Counted by who makes the final call on each step.</span><span>Adjust any step below.</span></div>
+  </div>
+
+  <div class="stack" id="stack">
+    <div class="s-main" style="width:50%"></div><div class="s-loop" style="width:33.3%"></div><div class="s-empty" style="width:16.7%"></div>
+  </div>
+  <div class="key">
+    <span><i class="s-main"></i>Rule decides <b id="k-rule"></b></span>
+    <span><i class="s-loop"></i>Person decides <b id="k-human"></b></span>
+    <span><i class="s-empty"></i>Model decides <b id="k-model"></b></span>
+  </div>
+
+  <div class="panel">
+    <h2>Workflow</h2>
+    <p class="note">One card per step, in order. Be specific about what the step actually decides. The sample is a generic warranty claim process.</p>
+    <div id="steps"></div>
+    <div class="actions" style="margin:20px 0 0">
+      <button class="btn" id="add"><span>Add a step</span></button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>The four outcomes</h2>
+    <p class="note">From most deterministic to least.</p>
+    <div class="prose">
+      <p><span class="chip t0">Rules only</span> Plain code or a lookup does the job. A model would only add cost and variance.</p>
+      <p><span class="chip t1">Model reads, rules decide</span> The model extracts, disambiguates or proposes. A deterministic check makes the call, so a near-match never gets through on the model's say-so.</p>
+      <p><span class="chip t2">Model drafts, person decides</span> There is no checkable right answer, so a person stays accountable for the decision and the model saves them time.</p>
+      <p><span class="chip t3">Model acts, sampled</span> A mistake is cheap. The model can act alone, with logging and regular sampling to catch drift.</p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn solid" id="copy"><span>Copy summary</span></button>
+    <button class="btn" id="reset"><span>Reset</span></button>
+  </div>
+
+  <section>
+    <h2>What's missing</h2>
+    <div class="prose">
+      <p>Five questions can't describe a real step, and the answers are yours, so this is only as honest as you are. Treat each call as a prompt. If it says rules and you disagree, find out why. The disagreement is usually a missing question.</p>
+      <p>Choices worth knowing about. Whenever rules fully cover a step the answer is rules, even where a model could do it, because predictable and cheap beats clever. A wrong answer that costs little always lets the model act alone, and one that costs a lot never does. Between those, whether the right answer can be checked decides whether a rule or a person makes the final call.</p>
+      <p>Not modelled: latency, volume, regulation, and what it costs to build the check itself. The sample workflow is generic and isn't taken from any employer.</p>
+      <p><strong>The model can read almost anything. Whether it should also decide is a separate question, and the one that tends to go unasked.</strong></p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap narrow">
+    <div class="foot-row">
+      <div>Runs in your browser. Nothing sent, nothing stored, no analytics.</div>
+      <div><a href="/#tools">More tools</a> &nbsp;·&nbsp; <a href="/score/">Use-case scoring</a></div>
+    </div>
+    <p class="disclaimer">General practice rather than professional advice. This is a simple heuristic, so check its output against your own domain and any rules that apply to you.</p>
+  </div>
+</footer>
+
+<script src="/app.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const MAX = 12;
+
+const OPTS = {
+  cost:  [['1', 'Minor: easily undone'], ['2', 'Moderate: rework'], ['3', 'Serious: money, safety, legal']],
+  ver:   [['y', 'Yes, it can be checked'], ['n', 'No, a judgement call']],
+  rules: [['full', 'Yes, fully'], ['part', 'Partly'], ['none', 'No']],
+  inp:   [['struct', 'Structured fields'], ['messy', 'Free text, photos, files']],
+  hold:  [['y', 'Yes, always'], ['some', 'Sometimes'], ['n', 'No']]
+};
+const LAB = {
+  cost: 'Cost of a wrong answer',
+  ver: 'Is there a checkable right answer?',
+  rules: 'Could plain rules do it?',
+  inp: 'What goes in?',
+  hold: 'Will a person catch a mistake first?'
+};
+const KEYS = ['cost', 'ver', 'rules', 'inp', 'hold'];
+
+const TIERS = [
+  { cls: 't0', name: 'Rules only',                   group: 'rule' },
+  { cls: 't1', name: 'Model reads, rules decide',    group: 'rule' },
+  { cls: 't2', name: 'Model drafts, person decides', group: 'human' },
+  { cls: 't3', name: 'Model acts, sampled',          group: 'model' }
+];
+
+const SAMPLE = [
+  { n: 'Read the claim email and photo',        cost: '2', ver: 'y', rules: 'none', inp: 'messy',  hold: 'y' },
+  { n: 'Check the warranty is in force',        cost: '3', ver: 'y', rules: 'full', inp: 'struct', hold: 'y' },
+  { n: 'Match the claimed part to the catalogue', cost: '3', ver: 'y', rules: 'part', inp: 'messy',  hold: 'some' },
+  { n: 'Approve or deny the claim',             cost: '3', ver: 'n', rules: 'part', inp: 'struct', hold: 'y' },
+  { n: 'Draft the reply to the customer',       cost: '2', ver: 'n', rules: 'none', inp: 'messy',  hold: 'y' },
+  { n: 'Tag the claim for reporting',           cost: '1', ver: 'y', rules: 'part', inp: 'messy',  hold: 'some' }
+];
+let rows = SAMPLE.map(r => ({ ...r }));
+const host = $('steps');
+
+function decide(s) {
+  let t;
+  if (s.rules === 'full') t = 0;
+  else if (s.cost === '1') t = 3;
+  else t = s.ver === 'y' ? 1 : 2;
+
+  const why = [];
+  if (t === 0) why.push('Rules already cover it, so a model would add cost and variance and nothing else. Keep it as code.');
+  if (t === 1) {
+    why.push('Let the model read, extract or propose. A deterministic check makes the final call.');
+    why.push(s.inp === 'messy'
+      ? 'Messy input is where a model earns its place.'
+      : 'The input is already structured, so see whether rules can take more of this first.');
+  }
+  if (t === 2) why.push(s.cost === '3'
+    ? 'Serious cost and no checkable answer: a person has to stay accountable for the decision.'
+    : 'There is no right answer to check against, so a person approves what the model drafts.');
+  if (t === 3) why.push('Low stakes, so the model can act alone. Log what it does and sample it.');
+
+  let warn = '';
+  if (s.hold === 'n' && t !== 0) {
+    warn = t === 3
+      ? 'Nothing catches mistakes here, so sample the output on a schedule.'
+      : 'Nothing stands between a wrong answer and its effect. Add a check or a person before this goes live.';
+  }
+  return { t, why: why.join(' '), warn };
+}
+
+function field(row, key) {
+  const wrap = document.createElement('div');
+  wrap.className = 'field';
+  const label = document.createElement('label');
+  const id = 'f' + Math.random().toString(36).slice(2, 9);
+  label.htmlFor = id;
+  label.textContent = LAB[key];
+  const sel = document.createElement('select');
+  sel.id = id;
+  OPTS[key].forEach(([v, text]) => {
+    const o = document.createElement('option');
+    o.value = v;
+    o.textContent = text;
+    if (row[key] === v) o.selected = true;
+    sel.appendChild(o);
+  });
+  sel.addEventListener('change', () => { row[key] = sel.value; update(); });
+  wrap.append(label, sel);
+  return wrap;
+}
+
+function render() {
+  host.textContent = '';
+  rows.forEach((row, i) => {
+    const card = document.createElement('div');
+    card.className = 'step';
+
+    const head = document.createElement('div');
+    head.className = 'step-head';
+    const num = document.createElement('span');
+    num.className = 'step-num';
+    num.textContent = 'STEP ' + (i + 1);
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = row.n;
+    input.maxLength = 80;
+    input.placeholder = 'What does this step do?';
+    input.setAttribute('aria-label', 'Step ' + (i + 1) + ' name');
+    input.addEventListener('input', () => { row.n = input.value; });
+    const rm = document.createElement('button');
+    rm.type = 'button';
+    rm.className = 'rm';
+    rm.textContent = '×';
+    rm.setAttribute('aria-label', 'Remove step ' + (i + 1));
+    rm.addEventListener('click', () => { rows.splice(rows.indexOf(row), 1); render(); });
+    head.append(num, input, rm);
+
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    KEYS.forEach(k => grid.appendChild(field(row, k)));
+
+    const verdict = document.createElement('div');
+    verdict.className = 'verdict';
+    const chip = document.createElement('span');
+    const text = document.createElement('p');
+    verdict.append(chip, text);
+
+    card.append(head, grid, verdict);
+    host.appendChild(card);
+    row._el = { chip, text, verdict };
+  });
+  update();
+}
+
+function update() {
+  const n = rows.length;
+  const count = { rule: 0, human: 0, model: 0 };
+  rows.forEach(row => {
+    const d = decide(row);
+    const tier = TIERS[d.t];
+    count[tier.group]++;
+    row._d = d;
+    row._el.chip.className = 'chip ' + tier.cls;
+    row._el.chip.textContent = tier.name;
+    row._el.text.textContent = d.why;
+    const old = row._el.verdict.querySelector('.warn');
+    if (old) old.remove();
+    if (d.warn) {
+      const w = document.createElement('p');
+      w.className = 'warn';
+      w.textContent = d.warn;
+      row._el.verdict.appendChild(w);
+    }
+  });
+
+  ['rule', 'human', 'model'].forEach(g => {
+    $('f-' + g).textContent = n ? count[g] + '/' + n : '—';
+    $('k-' + g).textContent = n ? Math.round(count[g] / n * 100) + '%' : '';
+  });
+  const bars = $('stack').children;
+  ['rule', 'human', 'model'].forEach((g, i) => { bars[i].style.width = (n ? count[g] / n * 100 : 0) + '%'; });
+  $('add').disabled = n >= MAX;
+}
+
+$('add').addEventListener('click', () => {
+  if (rows.length >= MAX) return;
+  rows.push({ n: '', cost: '2', ver: 'y', rules: 'part', inp: 'messy', hold: 'y' });
+  render();
+  const inputs = host.querySelectorAll('.step-head input');
+  if (inputs.length) inputs[inputs.length - 1].focus();
+});
+
+$('reset').addEventListener('click', () => {
+  rows = SAMPLE.map(r => ({ ...r }));
+  render();
+});
+
+$('copy').addEventListener('click', async () => {
+  const lines = rows.map((r, i) => (i + 1) + '. ' + (r.n.trim() || 'Untitled') + ': ' + TIERS[r._d.t].name);
+  lines.push('Rule decides ' + $('f-rule').textContent + ', person decides ' + $('f-human').textContent + ', model decides ' + $('f-model').textContent);
+  const label = $('copy').querySelector('span');
+  try { await navigator.clipboard.writeText(lines.join('\n')); label.textContent = 'Copied'; }
+  catch { label.textContent = 'Press Ctrl+C'; }
+  setTimeout(() => { label.textContent = 'Copy summary'; }, 1600);
+});
+
+render();
+</script>
+</body>
+</html>
