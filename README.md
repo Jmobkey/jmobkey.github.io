@@ -18,14 +18,14 @@ Source for my personal site — tools and working notes on getting AI from propo
 
 ## Stack
 
-Hand-written HTML, one shared stylesheet, one shared script. No framework, no build step, no dependencies, no analytics. Two web fonts and about 23KB of CSS and JS before compression.
+Hand-written HTML, one shared stylesheet, one shared script. No framework, no build step, no dependencies, no analytics. Two web fonts (Bricolage Grotesque and Source Serif 4) and under 30KB of CSS and JS before compression.
 
 The tools run entirely client-side. Nothing is sent anywhere, and there's no backend to send it to.
 
 ```
 ├── index.html
-├── style.css          # theme variables, shared components, print styles
-├── app.js             # theme toggle, scroll reveals, counters, plate tilt
+├── style.css          # design tokens (light and dark), shared components, print styles
+├── app.js             # theme toggle, scroll reveals, counters
 ├── 404.html
 ├── favicon.svg
 ├── og.png             # link-preview image, 1200x630
@@ -39,7 +39,7 @@ The tools run entirely client-side. Nothing is sent anywhere, and there's no bac
 └── line/index.html
 ```
 
-Theming is CSS custom properties on `html[data-theme]`, with the choice persisted to `localStorage` where the browser allows it. Dark is the default. Everything degrades under `prefers-reduced-motion`, without JavaScript, and in print.
+Theming is CSS custom properties on `html[data-theme]`, with the choice persisted to `localStorage` where the browser allows it. Light is the default, with a dark variant. Everything degrades under `prefers-reduced-motion`, without JavaScript, and in print.
 
 ## Why it's built this way
 
