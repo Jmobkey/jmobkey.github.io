@@ -9,6 +9,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0C1412">
+<link rel="canonical" href="https://jmobkey.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Josh Murphy">
+<meta property="og:title" content="Josh Murphy — AI strategy and delivery">
+<meta property="og:description" content="AI strategy and delivery lead. Shipped AI tooling for HVAC-R distribution across North America. Tools and working notes on getting AI from proposal to production.">
+<meta property="og:url" content="https://jmobkey.github.io/">
+<meta property="og:image" content="https://jmobkey.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Josh Murphy: most AI projects don't fail on the model.">
+<meta name="twitter:card" content="summary_large_image">
+<noscript><style>.rise{opacity:1;transform:none}h1 .ln>span{transform:none}.gap-bar{width:var(--w)}.dial i{transform:scaleX(1)}</style></noscript>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Josh Murphy","url":"https://jmobkey.github.io/","jobTitle":"Lead, AI Strategy & Delivery","address":{"@type":"PostalAddress","addressLocality":"Edmonton","addressRegion":"AB","addressCountry":"CA"},"sameAs":["https://www.linkedin.com/in/josh-murphy-96575b184","https://github.com/jmobkey"]}
+</script>
 <style>
 .hero{position:relative;padding:92px 0 96px;overflow:hidden;border-top:0}
 .hero .wrap{display:grid;grid-template-columns:1fr 366px;gap:60px;align-items:center;position:relative;z-index:2}
@@ -29,24 +46,26 @@
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div id="prog"></div>
 
 <header>
   <div class="wrap bar">
     <a class="mark" href="/">Josh Murphy <em>/ AI strategy &amp; delivery</em></a>
     <div class="right">
-      <nav>
-        <a href="#work">Work</a>
-        <a href="#how">Capabilities</a>
+      <nav aria-label="Primary">
+        <a class="hide-s" href="#work">Work</a>
+        <a class="hide-m" href="#how">Capabilities</a>
         <a href="#tools">Tools</a>
         <a href="/about/">About</a>
+        <a href="#contact">Contact</a>
       </nav>
       <button id="theme" aria-label="Toggle light and dark theme">◐</button>
     </div>
   </div>
 </header>
 
-<main>
+<main id="main">
 
   <div class="hero">
     <svg id="schem" viewBox="0 0 1400 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -201,6 +220,31 @@
         </div>
       </a>
 
+      <a class="tool rise" href="/score/">
+        <div class="tool-body">
+          <h3>Use-case scoring matrix</h3>
+          <p>Rank AI ideas by what will survive delivery rather than by how good they sound in the pitch. Scores value against data readiness, ownership, risk and effort, and flags the ideas that need their foundations fixed before anyone builds anything.</p>
+        </div>
+        <div class="gap">
+          <div class="gap-row"><div class="gap-bar est" style="--w:100%"></div><div class="gap-lab" data-count="100">0 <b>as pitched</b></div></div>
+          <div class="gap-row"><div class="gap-bar bill" style="--w:17.5%"></div></div>
+          <div class="gap-lab" data-count="18">0 <b>as scored</b></div>
+          <p class="gap-note">The customer-facing assistant in the sample set: joint top as pitched, third once data and ownership are counted.</p>
+        </div>
+      </a>
+
+      <a class="tool rise" href="/line/">
+        <div class="tool-body">
+          <h3>Where the line goes</h3>
+          <p>Walk a workflow step by step and decide which parts can be probabilistic and which must stay deterministic. Each step gets a call on who makes the final decision: a rule, a person or the model, with the reasoning shown.</p>
+        </div>
+        <div class="gap">
+          <div class="stack" style="margin-bottom:10px"><div class="s-main" style="width:50%"></div><div class="s-loop" style="width:33.3%"></div><div class="s-empty" style="width:16.7%"></div></div>
+          <div class="key" style="margin:0"><span><i class="s-main"></i>Rule decides <b>3</b></span><span><i class="s-loop"></i>Person decides <b>2</b></span><span><i class="s-empty"></i>Model decides <b>1</b></span></div>
+          <p class="gap-note">A six-step warranty claim process. The model does work in five of the steps and makes the final call in one.</p>
+        </div>
+      </a>
+
       <a class="tool rise" href="https://github.com/jmobkey/automation-architecture">
         <div class="tool-body">
           <h3>Automation architecture</h3>
@@ -219,6 +263,20 @@
       <p class="rise" style="--d:.1s">Six years as an HVAC-R service technician, a Red Seal gasfitter ticket out of NAIT, then a stretch behind the counter quoting jobs for contractors. I'm finishing a BSc in Computer Science alongside the work, conferring at the end of 2026.</p>
       <p class="punch rise" style="--d:.18s">What the field gives you is a low tolerance for answers that are nearly right. Knowing which parts of a system can be probabilistic and which have to stay deterministic is most of the design work, and knowing where that line sits comes from having been the person holding the wrong part.</p>
       <p class="rise" style="--d:.26s"><a href="/about/">The longer version &rarr;</a></p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap narrow">
+      <p class="eyebrow rise">05 — CONTACT</p>
+      <h2 class="rise" style="--d:.05s">Talk to me.</h2>
+      <p class="h2note rise" style="--d:.1s">About AI strategy, architecture, or getting something from pilot to production: roles, advisory work, or a good argument. Email is quickest.</p>
+      <div class="cta-row rise" style="--d:.15s">
+        <a class="btn solid" href="mailto:josh_p_murphy@hotmail.ca"><span>Email me</span></a>
+        <a class="btn" href="https://www.linkedin.com/in/josh-murphy-96575b184"><span>LinkedIn</span></a>
+        <a class="btn" href="https://github.com/jmobkey"><span>GitHub</span></a>
+      </div>
+      <p class="soon rise" style="--d:.2s">Based in Edmonton, Alberta, working across Canada and the United States.</p>
     </div>
   </section>
 

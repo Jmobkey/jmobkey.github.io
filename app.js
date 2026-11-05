@@ -4,13 +4,14 @@
   const root = document.documentElement;
 
   /* theme */
-  const saved = localStorage.getItem('theme');
-  if (saved) root.dataset.theme = saved;
+  let saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  if (saved === 'dark' || saved === 'light') root.dataset.theme = saved;
   const btn = document.getElementById('theme');
   if (btn) btn.addEventListener('click', () => {
     const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
     root.dataset.theme = next;
-    localStorage.setItem('theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
   });
 
   /* scroll progress */
